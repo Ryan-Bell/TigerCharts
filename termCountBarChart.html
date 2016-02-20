@@ -36,6 +36,7 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
+
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width], .1);
 
@@ -46,6 +47,7 @@ var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom");
 
+//the ticks can be used for units (ie. students)
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
@@ -57,37 +59,46 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    d3.csv("dataset.csv", type, function(error, data) {
+d3.csv("dataset.csv", type, function(error, data) {
     if (error) throw error;
     
     //attempting to count up number of entries for each term
     var counts = {};
+    //iterate over each row
     data.forEach(function(r) {
+        //if the term is not in the list above, add it
         if (!counts[r.Term]) {
             counts[r.Term] = 0;
         }
+        //increment the count for the term type of current row
         counts[r.Term]++;
     });
     
     //reconverting back to an arrray for use by d3
     var termCounts = [];
+    //set the keys as the first value in the counts tuples
     Object.keys(counts).forEach(function(key) {
+        //add the term name and count to this array
         termCounts.push({
             Term: key,
             count: counts[key]
         });
     });
     
+  //replace data with termCounts array
   data = termCounts;
   
+  //set the y domain from zero to largest count
   y.domain([0, d3.max(termCounts, function(d) { return d.count; })]);
   x.domain(data.map(function(d) { return d.Term; }));
 
+  //add the x axis to the graph element
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
+  //add the y axis to the graph element with text label 
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
@@ -96,8 +107,9 @@ var svg = d3.select("body").append("svg")
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Frequency");
+      .text("Num. Students");
 
+  //set the class, position, and size of each of the bars
   svg.selectAll(".bar")
       .data(data)
     .enter().append("rect")
@@ -108,9 +120,9 @@ var svg = d3.select("body").append("svg")
       .attr("height", function(d) { return height - y(d.count); });
 });
 
+//hard coersion to number type for bar heights
 function type(d) {
   d.count = +d.count;
   return d;
 }
-
 </script>
