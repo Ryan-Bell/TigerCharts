@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+svg {
+  padding: 10px 0 0 10px;
+}
+
+.arc {
+  stroke: #fff;
+}
+
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+    var radius = 44,
+        padding = 10;
+    var color = d3.scale.ordinal().range(["#98abc5","#8a89a6"]);
+    var arc = d3.svg.arc().outerRadius(radius).innerRadius(radius-30);
+    var pie = d3.layout.pie().sort(null).value(function(d) {return d.Employer});
+    
+    d3.csv("dataset.csv", function(error,data){
+        if (error) throw error;
+        
+        var tableObj = {};
+        
+        data.forEach(function(d){
+            if (tableObj[d.Employer] == null){
+                tableObj[d.Employer] = 1;
+            } else {
+                tableObj[d.Employer]++;
+            }
+        });
+        
+        for(var key in tableObj){
+            var val = tableObj[key];
+            console.log("Key: "+key+" Value: "+val); 
+        }
+    });
+</script>
+    
