@@ -23,23 +23,62 @@ svg {
     var color = d3.scale.ordinal().range(["#98abc5","#8a89a6"]);
     var arc = d3.svg.arc().outerRadius(radius).innerRadius(radius-30);
     var pie = d3.layout.pie().sort(null).value(function(d) {return d.Employer});
-    
+
     d3.csv("dataset.csv", function(error,data){
         if (error) throw error;
         
+        //Key: Employer, value: Occurrences, plans: list of {key: Plan, value: Occurences}
         var tableObj = {};
+        //Object containing the top tableObj's
+        var topEmployersObj = {};
+        var firstObj = "firstObj";
+        var secondObj = "secondObj";
+        var thirdObj = "thirdObj";
+        var fourthObj = "fourthObj";
+        var fifthObj = "fifthObj";
         
         data.forEach(function(d){
             if (tableObj[d.Employer] == null){
-                tableObj[d.Employer] = 1;
+                tableObj[d.Employer] = {};
+                tableObj[d.Employer].name = d.Employer;
+                tableObj[d.Employer].value = 1;
+                tableObj[d.Employer][d.Plan] = 1;
             } else {
-                tableObj[d.Employer]++;
+                tableObj[d.Employer].value++;
+                if (tableObj[d.Employer][d.Plan] == null){
+                    tableObj[d.Employer][d.Plan] = 1;
+                } else {
+                    tableObj[d.Employer][d.Plan]++;
+                }
+            }
+            
+            if (topEmployersObj.firstObj == null || 
+                tableObj[d.Employer].value > topEmployersObj.firstObj.value){
+                topEmployersObj.firstObj = tableObj[d.Employer];
+            } else if (topEmployersObj.secondObj == null || 
+                tableObj[d.Employer].value > topEmployersObj.secondObj.value){
+                topEmployersObj.secondObj = tableObj[d.Employer];
+            } else if (topEmployersObj.thirdObj == null || 
+                tableObj[d.Employer].value > topEmployersObj.thirdObj.value){
+                topEmployersObj.thirdObj = tableObj[d.Employer];
+            } else if (topEmployersObj.fourthObj == null || 
+                tableObj[d.Employer].value > topEmployersObj.fourthObj.value){
+                topEmployersObj.fourthObj = tableObj[d.Employer];
+            } else if (topEmployersObj.fifthObj == null || 
+                tableObj[d.Employer].value > topEmployersObj.fifthObj.value){
+                topEmployersObj.fifthObj = tableObj[d.Employer];
             }
         });
         
-        for(var key in tableObj){
-            var val = tableObj[key];
-            console.log("Key: "+key+" Value: "+val); 
+        for(var key in topEmployersObj){
+            var val = topEmployersObj[key].value;
+            var name = topEmployersObj[key].name;
+            console.log("Name: "+name+" Value: "+val); 
+            for(var plan in topEmployersObj[key]){
+                if(plan != "value" && plan != "name"){
+                    console.log("Plan: "+plan+" Vaule: "+topEmployersObj[key][plan]);
+                }
+            }
         }
     });
 </script>
