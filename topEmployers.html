@@ -57,55 +57,34 @@ svg {
             }
         });
         
-        function copyEmployerToObj (objResult, objToCopy){
-            objResult.name = objToCopy.name;
-            objResult.value = objToCopy.value;
-            for(var property in objToCopy){
-                if (objToCopy.hasOwnProperty(property)){
-                    objResult[property] = objToCopy[property];
-                }
-            }
-            return objResult;
-        } 
-        for(var objKey in tableObj){
-            if (topEmployersObj[firstObj] == null || 
-                tableObj[objKey].value > topEmployersObj[firstObj].value){
-                topEmployersObj[firstObj] = {};
-                copyEmployerToObj(topEmployersObj[firstObj], tableObj[objKey]);
-            } else if (topEmployersObj[secondObj] == null || 
-                tableObj[objKey].value > topEmployersObj[secondObj].value){
-                topEmployersObj[secondObj] = {};
-                copyEmployerToObj(topEmployersObj[secondObj], tableObj[objKey]);
-            } else if (topEmployersObj[thirdObj] == null || 
-                tableObj[objKey].value > topEmployersObj[thirdObj].value){
-                topEmployersObj[thirdObj] = {};
-                copyEmployerToObj(topEmployersObj[thirdObj], tableObj[objKey]);
-            } else if (topEmployersObj[fourthObj] == null || 
-                tableObj[objKey].value > topEmployersObj[fourthObj].value){
-                topEmployersObj[fourthObj] = {};
-                copyEmployerToObj(topEmployersObj[fourthObj], tableObj[objKey]);
-            } else if (topEmployersObj[fifthObj] == null || 
-                tableObj[objKey].value > topEmployersObj[fifthObj].value){
-                topEmployersObj[fifthObj] = {};
-                copyEmployerToObj(topEmployersObj[fifthObj], tableObj[objKey]);
-            }
+        function compare (a, b){
+            if (a.value < b.value)
+                return 1;
+            else if (a.value > b.value)
+                return -1;
+            else
+                return 0;
         }
         
-        for(var key in topEmployersObj){
-            var val = topEmployersObj[key].value;
-            var name = topEmployersObj[key].name;
+        for(var key in tableObj){
+            topEmployersObjList.push(tableObj[key]);
+        }
+        topEmployersObjList.sort(compare);
+        
+        for(var key in topEmployersObjList){
+            var val = topEmployersObjList[key].value;
+            var name = topEmployersObjList[key].name;
             var stringToLog = "Name: "+name+" Value: "+val+" Plans: {"; 
-            for(var plan in topEmployersObj[key]){
+            for(var plan in topEmployersObjList[key]){
                 if (plan != "value" && plan != "name"){
-                    stringToLog += "(" + "Plan: "+plan+" Vaule: "+topEmployersObj[key][plan] + "), ";
+                    stringToLog += "(" + "Plan: "+plan+" Vaule: "+topEmployersObjList[key][plan] + "), ";
                 }
             }
             stringToLog += "}";
             console.log(stringToLog);
-            topEmployersObjList.push(topEmployersObj[key]);
             document.write("<p><h2>"+name+"</h2>" + "<h4>Hired: " + val + "</h4></p>");
         }
-        console.log(topEmployersObj);        
+        console.log(topEmployersObjList);        
     });
 </script>
     
