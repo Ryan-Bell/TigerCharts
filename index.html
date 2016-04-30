@@ -1,12 +1,16 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
 <html>
     <head>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+        <link rel="stylesheet" href="styles.css">
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+        <script src="//d3js.org/d3.v3.min.js"></script>
+        <script src="scripts.js"></script>
         <title>TigerCharts</title>
     </head>
 <body>
@@ -16,7 +20,8 @@
                 <div class="card blue-grey darken-1">
                     <div class="card-content white-text">
                         <span class="card-title">Card Title</span>
-                        <p>Chart here</p>
+                        <div id="chart_top_employers"></div>
+                        <p>Chart description optionally here</p>
                     </div>
                 </div>
             </div>
