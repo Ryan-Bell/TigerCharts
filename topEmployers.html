@@ -30,20 +30,12 @@ div.tooltip {
 </style>
 <body>
     <p>Top Employers</p>
-    <div id="chart1"></div>
-    <div id="chart2"></div>
-    <div id="chart3"></div>
-    <div id="chart4"></div>
-    <div id="chart5"></div>
+    <div id="chart_top_employers"></div>
 </body>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
-    var radius = 44,
-        padding = 10;
-    var color = d3.scale.ordinal().range(["#98abc5","#8a89a6"]);
-    var arc = d3.svg.arc().outerRadius(radius).innerRadius(radius-30);
-    var pie = d3.layout.pie().sort(null).value(function(d) {return d.Employer});
 
+    //Sizes for the Top Employers Graph
     var width = 1000,
         height = 100,
         textHeight = 50,
@@ -51,8 +43,9 @@ div.tooltip {
         subtitleHeight = 20,
         barWidth = 50,
         barOffset = 5,
-        padding = 5;
+        padding = 10;
 
+    //List of all Top Employers
     var topEmployersObjList = [];
 
     d3.csv("dataset.csv", function(error,data){
@@ -68,6 +61,7 @@ div.tooltip {
         var fourthObj = "fourthObj";
         var fifthObj = "fifthObj";
         
+        //Counts the occurances of each plan at a company and adds it to the tableObj
         data.forEach(function(d){
             if (tableObj[d.Employer] == null){
                 tableObj[d.Employer] = {};
@@ -84,6 +78,7 @@ div.tooltip {
             }
         });
         
+        //A simple compare function to sort from greatest to least
         function compare (a, b){
             if (a.value < b.value)
                 return 1;
@@ -93,6 +88,7 @@ div.tooltip {
                 return 0;
         }
         
+        //Adds all employers in the tableObj to the topEmployersObjList and sotrs it
         for(var key in tableObj){
             topEmployersObjList.push(tableObj[key]);
         }
@@ -100,24 +96,32 @@ div.tooltip {
         
         console.log(topEmployersObjList[0]);
         
+        //Create the div for the tooltip
         var div = d3.select("body").append("div")	
             .attr("class", "tooltip")				
             .style("opacity", 0);
         
+        //Loop over the top x number of employers and create their graphs
         var i = 0;
         while(i < 5){
+            //The data array that will be passed to d3 to iterate over easily
             var tempArray = [];
+            //Iterate over all elements in the i'th topEmployersObj
+            //The object has a 'plan', a 'value', and a number of plans such as 'SOFTENG-BS'
             for(var plan in topEmployersObjList[i]){
                 if (plan != "value" && plan != "name"){
-                    var supObj = {};
-                    supObj.plan = plan;
-                    supObj.value = topEmployersObjList[i][plan];
-                    tempArray.push(supObj);
+                    //The object that will have a 'plan' and a 'value'
+                    var rowObj = {};
+                    rowObj.plan = plan;
+                    rowObj.value = topEmployersObjList[i][plan];
+                    //Add this object to the Array of plan objects
+                    tempArray.push(rowObj);
                 }
             }
+            //Sort the Array of plan objects greatest to least
             tempArray.sort(compare);
             
-            var svg = d3.select('#chart1')
+            var svg = d3.select('#chart_top_employers')
                 .append('svg')
                     .attr('width', width)
                     .attr('height', titleHeight);
@@ -137,7 +141,7 @@ div.tooltip {
                         .text(function(d){
                             return "Total: " + topEmployersObjList[i].value;
                         });
-            d3.select('#chart1')
+            d3.select('#chart_top_employers')
                 .append('svg')
                     .attr('width', width)
                     .attr('height', height)
@@ -168,7 +172,7 @@ div.tooltip {
                                 .duration(500)		
                                 .style("opacity", 0);	
                         });
-            d3.select('#chart1')
+            d3.select('#chart_top_employers')
                 .append('svg')
                     .attr('width',width)
                     .attr('height', textHeight)
@@ -185,22 +189,7 @@ div.tooltip {
                         .attr('fill','black')
             
             i++;
-        }
-        
-        for(var key in topEmployersObjList){
-            var val = topEmployersObjList[key].value;
-            var name = topEmployersObjList[key].name;
-            var stringToLog = "Name: "+name+" Value: "+val+" Plans: {"; 
-            for(var plan in topEmployersObjList[key]){
-                if (plan != "value" && plan != "name"){
-                    stringToLog += "(" + "Plan: "+plan+" Vaule: "+topEmployersObjList[key][plan] + "), ";
-                }
-            }
-            stringToLog += "}";
-            //console.log(stringToLog);
-            //document.write("<p><h2>"+name+"</h2>" + "<h4>Hired: " + val + "</h4></p>");
-        }
-        //console.log(topEmployersObjList);        
+        }     
     });
 </script>
     
