@@ -17,10 +17,10 @@ svg {
 div.tooltip {
     position: absolute;
     text-align: center;
-    width: 60px;
-    height: 40px;
+    width: 80px;
+    height: 28px;
     padding: 2px;
-    font: 16px sans-serif;
+    font: 12px sans-serif;
     background: lightskyblue;
     border: 0px;
     border-radius: 8px;
@@ -106,86 +106,85 @@ div.tooltip {
         
         var i = 0;
         while(i < 5){
-        
-        var tempArray = [];
-        for(var plan in topEmployersObjList[i]){
-            if (plan != "value" && plan != "name"){
-                var supObj = {};
-                supObj.plan = plan;
-                supObj.value = topEmployersObjList[i][plan];
-                tempArray.push(supObj);
+            var tempArray = [];
+            for(var plan in topEmployersObjList[i]){
+                if (plan != "value" && plan != "name"){
+                    var supObj = {};
+                    supObj.plan = plan;
+                    supObj.value = topEmployersObjList[i][plan];
+                    tempArray.push(supObj);
+                }
             }
-        }
-        tempArray.sort(compare);
-        
-        var svg = d3.select('#chart1')
-            .append('svg')
-                .attr('width', width)
-                .attr('height', titleHeight);
-                svg.append('text')
-                    .attr('x', barOffset)
-                    .attr('y', titleHeight - subtitleHeight - padding)
-                    .attr('font-family','sans-serif')
-                    .attr('font-size','30')
-                    .text(function(d){
-                        return topEmployersObjList[i].name;
-                    });
-                svg.append('text')
-                    .attr('x', padding*4)
-                    .attr('y', titleHeight - padding)
-                    .attr('font-family','sans-serif')
-                    .attr('font-size','12')
-                    .text(function(d){
-                        return "Total: " + topEmployersObjList[i].value;
-                    });
-        d3.select('#chart1')
-            .append('svg')
-                .attr('width', width)
-                .attr('height', height)
-                .style('background', '#C9D7D6')
-                .selectAll('rect').data(tempArray)
-                .enter().append('rect')
-                    .style('fill', '#C61C6F')
-                    .attr('width', barWidth)
-                    .attr('height', function(d){
-                        return d.value;
-                    })
-                    .attr('x', function(d,i){
-                        return i * (barWidth + barOffset);
-                    })
-                    .attr('y', function(d){
-                        return height - d.value;
-                    })
-                    .on('mouseover',function(d){
-                        div.transition()
-                            .duration(100)
-                            .style('opacity',.9);
-                        div.html(d.plan + "<br/>")
-                            .style('left', (d3.event.pageX) + "px")
-                            .style('top', (d3.event.pageY - 28) + "px");
-                    })
-                    .on("mouseout", function(d) {		
-                        div.transition()		
-                            .duration(500)		
-                            .style("opacity", 0);	
-                    });
-        d3.select('#chart1')
-            .append('svg')
-                .attr('width',width)
-                .attr('height', textHeight)
-                .selectAll('text').data(tempArray)
-                .enter().append('text')
-                    .attr('x', function(d,i){
-                        return i * (barWidth + barOffset);
-                    })
-                    .text(function(d){
-                        return d.plan;
-                    })
-                    .attr('font-family','sans-serif')
-                    .attr('font-size','8px')
-                    .attr('fill','black')
-        
-        i++;
+            tempArray.sort(compare);
+            
+            var svg = d3.select('#chart1')
+                .append('svg')
+                    .attr('width', width)
+                    .attr('height', titleHeight);
+                    svg.append('text')
+                        .attr('x', barOffset)
+                        .attr('y', titleHeight - subtitleHeight - padding)
+                        .attr('font-family','sans-serif')
+                        .attr('font-size','30')
+                        .text(function(d){
+                            return topEmployersObjList[i].name;
+                        });
+                    svg.append('text')
+                        .attr('x', padding*4)
+                        .attr('y', titleHeight - padding)
+                        .attr('font-family','sans-serif')
+                        .attr('font-size','12')
+                        .text(function(d){
+                            return "Total: " + topEmployersObjList[i].value;
+                        });
+            d3.select('#chart1')
+                .append('svg')
+                    .attr('width', width)
+                    .attr('height', height)
+                    .style('background', '#C9D7D6')
+                    .selectAll('rect').data(tempArray)
+                    .enter().append('rect')
+                        .style('fill', '#C61C6F')
+                        .attr('width', barWidth)
+                        .attr('height', function(d){
+                            return d.value;
+                        })
+                        .attr('x', function(d,i){
+                            return i * (barWidth + barOffset);
+                        })
+                        .attr('y', function(d){
+                            return height - d.value;
+                        })
+                        .on('mouseover',function(d){
+                            div.transition()
+                                .duration(100)
+                                .style('opacity',.9);
+                            div.html(d.plan + ": " + d.value + "<br/>")
+                                .style('left', (d3.event.pageX) + "px")
+                                .style('top', (d3.event.pageY - 28) + "px");
+                        })
+                        .on("mouseout", function(d) {		
+                            div.transition()		
+                                .duration(500)		
+                                .style("opacity", 0);	
+                        });
+            d3.select('#chart1')
+                .append('svg')
+                    .attr('width',width)
+                    .attr('height', textHeight)
+                    .selectAll('text').data(tempArray)
+                    .enter().append('text')
+                        .attr('x', function(d,i){
+                            return i * (barWidth + barOffset);
+                        })
+                        .text(function(d){
+                            return d.plan;
+                        })
+                        .attr('font-family','sans-serif')
+                        .attr('font-size','8px')
+                        .attr('fill','black')
+            
+            i++;
         }
         
         for(var key in topEmployersObjList){
