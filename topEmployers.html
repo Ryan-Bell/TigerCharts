@@ -14,6 +14,19 @@ svg {
   stroke: #fff;
 }
 
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 60px;
+    height: 40px;
+    padding: 2px;
+    font: 16px sans-serif;
+    background: lightskyblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
 </style>
 <body>
     <p>Top Employers</p>
@@ -34,8 +47,11 @@ svg {
     var width = 1000,
         height = 100,
         textHeight = 50,
+        titleHeight = 50,
+        subtitleHeight = 20,
         barWidth = 50,
-        barOffset = 5;
+        barOffset = 5,
+        padding = 5;
 
     var topEmployersObjList = [];
 
@@ -84,16 +100,44 @@ svg {
         
         console.log(topEmployersObjList[0]);
         
+        var div = d3.select("body").append("div")	
+            .attr("class", "tooltip")				
+            .style("opacity", 0);
+        
+        var i = 0;
+        while(i < 5){
+        
         var tempArray = [];
-        for(var plan in topEmployersObjList[0]){
+        for(var plan in topEmployersObjList[i]){
             if (plan != "value" && plan != "name"){
                 var supObj = {};
                 supObj.plan = plan;
-                supObj.value = topEmployersObjList[0][plan];
+                supObj.value = topEmployersObjList[i][plan];
                 tempArray.push(supObj);
             }
         }
+        tempArray.sort(compare);
         
+        var svg = d3.select('#chart1')
+            .append('svg')
+                .attr('width', width)
+                .attr('height', titleHeight);
+                svg.append('text')
+                    .attr('x', barOffset)
+                    .attr('y', titleHeight - subtitleHeight - padding)
+                    .attr('font-family','sans-serif')
+                    .attr('font-size','30')
+                    .text(function(d){
+                        return topEmployersObjList[i].name;
+                    });
+                svg.append('text')
+                    .attr('x', padding*4)
+                    .attr('y', titleHeight - padding)
+                    .attr('font-family','sans-serif')
+                    .attr('font-size','12')
+                    .text(function(d){
+                        return "Total: " + topEmployersObjList[i].value;
+                    });
         d3.select('#chart1')
             .append('svg')
                 .attr('width', width)
@@ -111,6 +155,19 @@ svg {
                     })
                     .attr('y', function(d){
                         return height - d.value;
+                    })
+                    .on('mouseover',function(d){
+                        div.transition()
+                            .duration(100)
+                            .style('opacity',.9);
+                        div.html(d.plan + "<br/>")
+                            .style('left', (d3.event.pageX) + "px")
+                            .style('top', (d3.event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function(d) {		
+                        div.transition()		
+                            .duration(500)		
+                            .style("opacity", 0);	
                     });
         d3.select('#chart1')
             .append('svg')
@@ -127,6 +184,9 @@ svg {
                     .attr('font-family','sans-serif')
                     .attr('font-size','8px')
                     .attr('fill','black')
+        
+        i++;
+        }
         
         for(var key in topEmployersObjList){
             var val = topEmployersObjList[key].value;
