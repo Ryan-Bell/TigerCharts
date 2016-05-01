@@ -1,5 +1,6 @@
 body {
   font: 10px sans-serif;
+  color: white
 }
 
 svg {
@@ -17,8 +18,41 @@ div.tooltip {
     height: 28px;
     padding: 2px;
     font: 12px sans-serif;
-    background: lightskyblue;
+    background: #FF8A65;
+    fill-opacity: 0.70;
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
+}
+
+.chartTitle {
+    fill: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+}
+
+.chartSubTitle {
+    fill: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12;
+    fill-opacity: 0.70;
+}
+
+.chartSubLabel {
+    fill: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 8px;
+    fill-opacity: 0.70;
+}
+
+.chartBackground {
+    background: #B0BEC5;
+}
+
+.chartBar {
+    fill: #FF5722;
+}
+
+.chartBar:hover {
+    fill: #BF360C;
 }

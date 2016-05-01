@@ -91,18 +91,16 @@ d3.csv("dataset.csv", function(error,data){
                 .attr('width', width)
                 .attr('height', titleHeight);
                 svg.append('text')
+                    .attr('class', 'chartTitle')
                     .attr('x', barOffset)
                     .attr('y', titleHeight - subtitleHeight - padding)
-                    .attr('font-family','sans-serif')
-                    .attr('font-size','30')
                     .text(function(d){
                         return topEmployersObjList[i].name;
                     });
                 svg.append('text')
                     .attr('x', padding*4)
                     .attr('y', titleHeight - padding)
-                    .attr('font-family','sans-serif')
-                    .attr('font-size','12')
+                    .attr('class','chartSubTitle')
                     .text(function(d){
                         return "Total: " + topEmployersObjList[i].value;
                     });
@@ -110,10 +108,10 @@ d3.csv("dataset.csv", function(error,data){
             .append('svg')
                 .attr('width', width)
                 .attr('height', height)
-                .style('background', '#C9D7D6')
+                .attr('class', 'chartBackground')
                 .selectAll('rect').data(tempArray)
                 .enter().append('rect')
-                    .style('fill', '#C61C6F')
+                    .attr('class', 'chartBar')
                     .attr('width', barWidth)
                     .attr('height', function(d){
                         return d.value;
@@ -149,9 +147,8 @@ d3.csv("dataset.csv", function(error,data){
                     .text(function(d){
                         return d.plan;
                     })
-                    .attr('font-family','sans-serif')
-                    .attr('font-size','8px')
-                    .attr('fill','black')
+                    .attr('class','chartSubLabel')
+                    .attr('fill','black');
         
         i++;
     }     
