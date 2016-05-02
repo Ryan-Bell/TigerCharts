@@ -212,6 +212,66 @@ d3.csv("dataset.csv", function(error,data){
         num_majors++;
     }
     
+    //----- Employer Trends -----
+    
+    var historyObjList = [];
+    var allHistoryObj = {};
+    
+    data.forEach(function(d){
+        if(allHistoryObj[d.Term] == null){
+            var historyObj = {};
+            historyObj.name = d.Term;
+            historyObj.value = 1;
+            historyObj.employers = [];
+            var employerObj = {};
+            employerObj.name = d.Employer;
+            employerObj.value = 1;
+            employerObj.plans = [];
+            var planObj = {};
+            planObj.name = d.Plan;
+            planObj.value = 1;
+            employerObj.plans.push(planObj);
+            historyObj.employers.push(employerObj);
+            allHistoryObj[d.Term] = historyObj;
+        } else {
+            var isNewEmployer = true;
+            var isNewPlan = true;
+            allHistoryObj[d.Term].employers.forEach(function(history){
+                if (history.name == d.Employer){
+                    isNewEmployer = false;
+                    history.value++;
+                    history.plans.forEach(function(plan){
+                        if (plan.name == d.Plan){
+                            isNewPlan = false;
+                            plan.value++;
+                        } 
+                    });
+                }
+            });
+            if (isNewEmployer){
+                var employerObj = {};
+                employerObj.name = d.Employer;
+                employerObj.value = 1;
+                employerObj.plans = [];
+                var planObj = {};
+                planObj.name = d.Plan;
+                planObj.value = 1;
+                employerObj.plans.push(planObj);
+                allHistoryObj[d.Term].employers.push(employerObj);
+            } else if (!isNewEmployer && isNewPlan){
+                allHistoryObj[d.Term].employers.forEach(function(employer){
+                   if (employer.name == d.Employer){
+                        var planObj = {};
+                        planObj.name = d.Plan;
+                        planObj.value = 1;
+                        employer.plans.push(planObj);
+                   } 
+                });
+            }
+            allHistoryObj[d.Term].value++;
+       }
+    });
+    
     //----- Map -----
     
     var mapWidth = 960,
