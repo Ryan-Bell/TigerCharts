@@ -8,7 +8,9 @@ var width = "100%",
     subtitleHeight = 20,
     barWidth = 50,
     barOffset = 5,
-    padding = 10;
+    padding = 10,
+    small_padding = 5,
+    xsmall_padding = 2;
 
 //List of all Top Employers
 var topEmployersObjList = [];
@@ -62,6 +64,9 @@ d3.csv("dataset.csv", function(error,data){
     //Loop over the top x number of employers and create their graphs
     var i = 0;
     while(i < 5){
+        var isFirstColumn = true;
+        var barScale;
+        
         //The data array that will be passed to d3 to iterate over easily
         var tempArray = [];
         //Iterate over all elements in the i'th topEmployersObj
@@ -107,13 +112,17 @@ d3.csv("dataset.csv", function(error,data){
                     .attr('class', 'chartBar')
                     .attr('width', barWidth)
                     .attr('height', function(d){
-                        return d.value;
+                        if (isFirstColumn){
+                            isFirstColumn = false;
+                            barScale = (height) / d.value;
+                        }
+                        return d.value * barScale;
                     })
                     .attr('x', function(d,i){
                         return i * (barWidth + barOffset);
                     })
                     .attr('y', function(d){
-                        return height - d.value;
+                        return height - (d.value * barScale);
                     })
                     .on('mouseover',function(d){
                         div.transition()
