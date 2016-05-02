@@ -16,6 +16,9 @@ var width = "100%",
 var topEmployersObjList = [];
 
 d3.csv("dataset.csv", function(error,data){
+    
+    //----- Top Employers -----
+    
     if (error) throw error;
     
     //tableObj[objKey]: Employer, value: Occurrences, plans: list of {tableObj[objKey]: Plan, value: Occurences}
@@ -153,7 +156,63 @@ d3.csv("dataset.csv", function(error,data){
                     .attr('fill','black');
         
         i++;
-    }    
+    }
+    
+    //----- Top Employed Majors -----
+    
+    //The List of all Major Objects
+    //majorObj: name (Name of the plan), value (Number of occurences all time)
+    var majorObjList = [];
+    //Object which attribute's are all of the majorObj
+    var allMajorObj = {};
+    //Populate allMajorObj
+    data.forEach(function(d){
+        if (allMajorObj[d.Plan] == null){
+            var majorObj = {};
+            majorObj.name = d.Plan;
+            majorObj.value = 1;
+            allMajorObj[d.Plan] = majorObj;
+        } else {
+            allMajorObj[d.Plan].value++;
+        }
+    });
+    //Translate allMajorObj to majorObjList
+    for(var key in allMajorObj){
+        majorObjList.push(allMajorObj[key]);
+    }
+    majorObjList.sort(compare);
+    
+    var num_majors = 0;
+    while (num_majors < majorObjList.length){
+        //Append an SVG element to the chart_top_employers div
+        var svg_employed = d3.select('#chart_top_employed_majors')
+            .append('svg')
+                .attr('width', '100%')
+                .attr('height', titleHeight);
+        var temp_width;
+        var plan_text = svg_employed.append('text')
+            .attr('class', 'chartTitle')
+            .attr('x', small_padding)
+            .attr('y', subtitleHeight)
+            .text(function(d){
+                return "#" + (num_majors + 1) + ") " + majorObjList[num_majors].name + ": ";
+            })
+            .each(function(d) {
+                temp_width = this.getBBox().width;
+            });
+        svg_employed.append('text')
+            .attr('class', 'chartTitleAccent')       
+            .attr('x', function(d){
+                return temp_width + xsmall_padding;
+            })
+            .attr('y', subtitleHeight)
+            .text(function(d){
+                return majorObjList[num_majors].value;
+            });
+        num_majors++;
+    }
+    
+    //----- Map -----
     
     var mapWidth = 960,
     mapHeight = 600;
