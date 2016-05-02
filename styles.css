@@ -63,6 +63,7 @@ div.tooltip {
 .chartBar:hover {
     fill: #BF360C;
 }
+
 /*-------MAP STYLES---------*/
 .land{
     fill: #fff;
@@ -88,3 +89,21 @@ div.tooltip {
 .q6-9 { fill:rgb(33,113,181); }
 .q7-9 { fill:rgb(8,81,156); }
 .q8-9 { fill:rgb(8,48,107); }
+
+/*--------EMPLOYER TREND STYLES--------*/
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}

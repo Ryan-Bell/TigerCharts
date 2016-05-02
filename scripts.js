@@ -105,41 +105,41 @@ d3.csv("dataset.csv", function(error,data){
                     .text(function(d){
                         return "Total: " + topEmployersObjList[i].value;
                     });
-        d3.select('#chart_top_employers')
+        var svg_bar_chart = d3.select('#chart_top_employers')
             .append('svg')
                 .attr('width', width)
                 .attr('height', height)
-                .attr('class', 'chartBackground')
-                .selectAll('rect').data(tempArray)
-                .enter().append('rect')
-                    .attr('class', 'chartBar')
-                    .attr('width', barWidth)
-                    .attr('height', function(d){
-                        if (isFirstColumn){
-                            isFirstColumn = false;
-                            barScale = (height) / d.value;
-                        }
-                        return d.value * barScale;
-                    })
-                    .attr('x', function(d,i){
-                        return i * (barWidth + barOffset);
-                    })
-                    .attr('y', function(d){
-                        return height - (d.value * barScale);
-                    })
-                    .on('mouseover',function(d){
-                        div.transition()
-                            .duration(100)
-                            .style('opacity',.9);
-                        div.html(d.plan + ": " + d.value + "<br/>")
-                            .style('left', (d3.event.pageX) + "px")
-                            .style('top', (d3.event.pageY - 28) + "px");
-                    })
-                    .on("mouseout", function(d) {		
-                        div.transition()		
-                            .duration(500)		
-                            .style("opacity", 0);	
-                    });
+                .attr('class', 'chartBackground');
+        svg_bar_chart.selectAll('rect').data(tempArray)
+            .enter().append('rect')
+                .attr('class', 'chartBar')
+                .attr('width', barWidth)
+                .attr('height', function(d){
+                    if (isFirstColumn){
+                        isFirstColumn = false;
+                        barScale = (height) / d.value;
+                    }
+                    return d.value * barScale;
+                })
+                .attr('x', function(d,i){
+                    return i * (barWidth + barOffset);
+                })
+                .attr('y', function(d){
+                    return height - (d.value * barScale) - padding;
+                })
+                .on('mouseover',function(d){
+                    div.transition()
+                        .duration(100)
+                        .style('opacity',.9);
+                    div.html(d.plan + ": " + d.value + "<br/>")
+                        .style('left', (d3.event.pageX) + "px")
+                        .style('top', (d3.event.pageY - 28) + "px");
+                })
+                .on("mouseout", function(d) {		
+                    div.transition()		
+                        .duration(500)		
+                        .style("opacity", 0);	
+                });
         d3.select('#chart_top_employers')
             .append('svg')
                 .attr('width',width)
@@ -271,7 +271,71 @@ d3.csv("dataset.csv", function(error,data){
             allHistoryObj[d.Term].value++;
        }
     });
+    //Translate allHistoryObj to historyObj
+    for(var key in allHistoryObj){
+        historyObjList.push(allHistoryObj[key]);
+    }
+    console.log(historyObjList);
     
+    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+        trend_width = 960 - margin.left - margin.right,
+        trend_height = 500 - margin.top - margin.bottom;
+    
+    var trend_x = d3.scale.linear()
+        .range([0, trend_width]);
+
+    var trend_y = d3.scale.linear()
+        .range([trend_height, 0]);
+
+    var xAxis = d3.svg.axis()
+        .scale(trend_x)
+        .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+        .scale(trend_y)
+        .orient("left");
+    var trend_line = d3.svg.line()
+        .x(function(d) { return trend_x(d.name); })
+        .y(function(d) { return trend_y(d.value); });
+    
+    var svg_trends = d3.select("#chart_employer_trends")
+    .append("svg")
+        .attr("width", trend_width + margin.left + margin.right)
+        .attr("height", trend_height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var num_terms = 0;
+    while(num_terms < historyObjList.length){
+        trend_x.domain(d3.extent(historyObjList, function(d) { return d.name; }));
+        trend_y.domain(d3.extent(historyObjList, function(d) { return d.value; }));
+        
+        svg_trends.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + trend_height + ")")
+            .call(xAxis);
+            
+        svg_trends.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Students (#)");
+
+//TODO Fix this part of the code
+        historyObjList[num_terms].employers.forEach(function(employer){
+            svg_trends.append("path")
+                .datum(employer)
+                .attr("class", "line")
+                .attr("d", trend_line); 
+        });
+        
+        num_terms++;
+    }   
+        
     //----- Map -----
     
     var mapWidth = 960,
