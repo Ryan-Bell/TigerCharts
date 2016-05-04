@@ -161,6 +161,34 @@ div.tooltip {
     background: #f4780d;
     color: white
 }
+#logo {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 90%;
+    display: block
+}
+h1 {
+    font-size: 72px;
+    text-transform: uppercase;
+    text-align: center
+}
+h2 {
+    font-size: 36px;
+    text-transform: uppercase
+}
+h3 {
+    font-size: 24px;
+    line-height: 1.7;
+    color: #5D5D5D
+}
+h4 {
+    font-size: 13px;
+    text-transform: uppercase
+}
+p {
+    font-size: 18px;
+    line-height: 1.6
+}
 .mobile,
 i {
     display: none
@@ -172,6 +200,15 @@ i {
 @media (max-width: 1000px) {
     #hamburger-menu {
         display: inline-block
+    }
+    h1 {
+        font-size: 56px
+    }
+    h2 {
+        font-size: 36px
+    }
+    h3 {
+        font-size: 18px
     }
     .nav .desktop {
         display: none
