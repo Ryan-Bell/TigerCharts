@@ -34,6 +34,8 @@
         <script src="//d3js.org/d3.v3.min.js"></script>
         <script src="//d3js.org/queue.v1.min.js"></script>
         <script src="//d3js.org/topojson.v1.min.js"></script>
+        
+        <!-- Custom js -->
         <script src="scripts.js"></script>
         
         <!-- Import Roboto Font -->
@@ -64,7 +66,7 @@
                 $("a.mobile").click(function() {
                     //slide up the expanded menu
                     $("#mobile-nav").delay(400).slideUp("fast")
-                }), 
+                }),
                 //recalc spacing vars if a img suddenly loads in
                 $("img").load(function() {
                     e()
@@ -73,7 +75,19 @@
                 $(window).resize(function() {
                     e()
                 }), 
+                //calc the spacing vars for the first time
                 e(), 
+                //highlight the selected link in the nav bar
+                $('.nav a').click(function() { 
+                    //ensure that the hamburger isn't highlighted
+                    if ($(this).hasClass("button-collapse")){
+                        $(this).removeClass("active");
+                    } else {
+                        $(".nav a").removeClass("active"), 
+                        $(this).addClass("active")
+                    }
+                })
+            }, 
             //map the ready function as the function to call on
                 //doc ready and the similar (older) page load 
             $(document).ready(ready), 

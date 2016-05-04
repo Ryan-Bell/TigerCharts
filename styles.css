@@ -249,6 +249,9 @@ i {
     .nav {
         text-align: left
     }
+    .nav a{
+        display: inherit
+    }
     .mobile {
         display: inherit
     }
