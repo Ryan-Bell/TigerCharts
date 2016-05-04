@@ -39,6 +39,12 @@
         <!-- Import Roboto Font -->
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         
+        <script>
+            //helps with the mobile navigation system
+            $( document ).ready(function(){
+                $(".button-collapse").sideNav();
+            })     
+        </script>
     </head>
 <body>
     <!-- class nav is used instead of element <nav> to avoid style clash with materialize -->
@@ -49,6 +55,21 @@
         <a class='desktop' href='#employmentMap'>Employment Map</a>
         <a class='desktop' href='#topMajors'>Top Employed Majors</a>
         <a class='desktop' href='#trends'>Employer Trends</a>
+        
+        <!-- Collapsed navbar that will show for mobile devices -->
+        <!-- Hamburger -->
+        <a href="#" data-activates="mobile-demo" class="button-collapse" id="hamburger-menu"><i class="material-icons">menu</i></a>
+        <!-- TigerCharts collapsed text -->
+        <h2 class='mobile mob-nav-header' style='font-size: 24px; text-align: left; color: white; padding:0; margin: 0; position: relative; top: -5px; font-weight: 300'>TigerCharts</h2>
+        <div class="side-nav" id='mobile-nav'>
+            <ul id="mobile-demo">
+                <li><a class='mobile active' href='#home'>TigerCharts</a></li>
+                <li><a class='mobile' href='#topEmployers'>Top Employers</a></li>
+                <li><a class='mobile' href='#employmentMap'>Employment Map</a></li>
+                <li><a class='mobile' href='#topMajors'>Top Employed Majors</a></li>
+                <li><a class='mobile' href='#trends'>Employer Trends</a></li>
+            </ul>
+        </div>
     </div>    
     <!-- Old Navbar
     <div class="navbar-fixed orange lighten-3" style="height: 110px;">

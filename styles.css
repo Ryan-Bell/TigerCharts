@@ -139,4 +139,32 @@ div.tooltip {
     -o-transition: background-color 200ms ease;
     transition: background-color 200ms ease
 }
+#hamburger-menu {
+    display: none
+}
+
+@media (max-width: 1000px) {
+    #hamburger-menu {
+        display: inline-block
+    }
+    .nav .desktop {
+        display: none
+    }
+    .nav {
+        text-align: left
+    }
+    .mobile {
+        display: inherit
+    }
+    #mobile-nav {
+        display: none
+    }
+    #mobile-nav a {
+        margin: 0 10px;
+        margin-bottom: 10px
+    }
+    .mob-nav-header {
+        display: inline-block
+    }
+}
 }
