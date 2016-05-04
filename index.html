@@ -86,7 +86,15 @@
                         $(".nav a").removeClass("active"), 
                         $(this).addClass("active")
                     }
-                })
+                }),
+                //setup the menu links to move to the position in the HTML
+                $(".jumpLink").on("click", function( e ) {
+                    e.preventDefault();
+                    //animate scrolling the page to the top of the element minus the height of the nav bar (.6 sec)
+                    $("body, html").animate({ 
+                        scrollTop: $( $(this).attr('href') ).offset().top - $(".nav").height() 
+                    }, 600);
+                });
             }, 
             //map the ready function as the function to call on
                 //doc ready and the similar (older) page load 
@@ -94,79 +102,79 @@
             $(document).on("page:load", ready) 
         </script>
     </head>
-<body>
-    <!-- class nav is used instead of element <nav> to avoid style clash with materialize -->
-    <div class="nav">
-        <!-- NavBar elements for desktops -->
-        <a class='desktop' href='#home'>TigerCharts</a> <!-- replace with logo -->
-        <a class='desktop active' href='#topEmployers'>Top Employers</a>
-        <a class='desktop' href='#employmentMap'>Employment Map</a>
-        <a class='desktop' href='#topMajors'>Top Employed Majors</a>
-        <a class='desktop' href='#trends'>Employer Trends</a>
-        
-        <!-- Collapsed navbar that will show for mobile devices -->
-        <!-- Hamburger -->
-        <a href="#" data-activates="mobile-demo" class="button-collapse" id="hamburger-menu"><i class="material-icons">menu</i></a>
-        <!-- TigerCharts collapsed text -->
-        <h2 class='mobile mob-nav-header' style='font-size: 24px; text-align: left; color: white; padding:0; margin: 0; position: relative; top: -5px; font-weight: 300'>TigerCharts</h2>
-        <div id="mobile-nav">
-        <a class='mobile active' href='#topEmployers'>Top Employers</a>
-        <a class='mobile' href='#employmentMap'>Employment Map</a>
-        <a class='mobile' href='#topMajors'>Top Majors</a>
-        <a class='mobile' href='#trends'>Employer Trends</a>
-        </div>
-    </div>    
-    <div class="row">
-        <div class="container">
-            <div class="col s12">
-                <div class="card blue-grey darken-1" id="TopEmployers">
-                    <div class="card-content white-text">
-                        <span class="card-title">Top Employers</span>
-                        <div id="chart_top_employers"></div>
-                        <p>Chart description optionally here</p>
+    <body>
+        <!-- class nav is used instead of element <nav> to avoid style clash with materialize -->
+        <div class="nav">
+            <!-- NavBar elements for desktops -->
+            <a class='desktop jumpLink' href='#home'>TigerCharts</a> <!-- replace with logo -->
+            <a class='desktop jumpLink active' href='#topEmployers'>Top Employers</a>
+            <a class='desktop jumpLink' href='#employmentMap'>Employment Map</a>
+            <a class='desktop jumpLink' href='#topMajors'>Top Employed Majors</a>
+            <a class='desktop jumpLink' href='#trends'>Employer Trends</a>
+            
+            <!-- Collapsed navbar that will show for mobile devices -->
+            <!-- Hamburger -->
+            <a href="#" data-activates="mobile-demo" class="button-collapse" id="hamburger-menu"><i class="material-icons">menu</i></a>
+            <!-- TigerCharts collapsed text -->
+            <h2 class='mobile mob-nav-header' style='font-size: 24px; text-align: left; color: white; padding:0; margin: 0; position: relative; top: -5px; font-weight: 300'>TigerCharts</h2>
+            <div id="mobile-nav">
+                <a class='mobile jumpLink active' href='#topEmployers'>Top Employers</a>
+                <a class='mobile jumpLink' href='#employmentMap'>Employment Map</a>
+                <a class='mobile jumpLink' href='#topMajors'>Top Majors</a>
+                <a class='mobile jumpLink' href='#trends'>Employer Trends</a>
+            </div>
+        </div>    
+        <div class="row" id="home">
+            <div class="container">
+                <div class="col s12" id="topEmployers">
+                    <div class="card blue-grey darken-1" >
+                        <div class="card-content white-text">
+                            <span class="card-title">Top Employers</span>
+                            <div id="chart_top_employers"></div>
+                            <p>Chart description optionally here</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="container">
-            <div class="col s12" id="Map">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <span class="card-title">Employment Map</span>
-                        <div id="map_employment"></div>
-                        <p>Chart here</p>
+        <div class="row">
+            <div class="container">
+                <div class="col s12" id="employmentMap">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Employment Map</span>
+                            <div id="map_employment"></div>
+                            <p>Chart here</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class='bg-image' style='background-image: url(./images/JT.jpg)'></div>
-    <div class="row">
-        <div class="container">
-            <div class="col s12">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <span class="card-title">Top Employed Majors</span>
-                        <div id="chart_top_employed_majors"></div>
+        <div class='bg-image' style='background-image: url(./images/JT.jpg)'></div>
+        <div class="row">
+            <div class="container">
+                <div class="col s12" id="topMajors">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Top Employed Majors</span>
+                            <div id="chart_top_employed_majors"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="container">
-            <div class="col s12">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <span class="card-title">Employer Trends</span>
-                        <div id="chart_employer_trends"></div>
+        <div class="row">
+            <div class="container">
+                <div class="col s12" id="trends">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Employer Trends</span>
+                            <div id="chart_employer_trends"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>    
-    <div class='bg-image' style='background-image: url(./images/JT.jpg)'></div>
-</body>
+        </div>    
+        <div class='bg-image' style='background-image: url(./images/JT.jpg)'></div>
+    </body>
 <html>
