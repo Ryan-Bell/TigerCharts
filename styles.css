@@ -124,6 +124,16 @@ div.tooltip {
     text-align: center;
     font-size: 0
 }
+.nav i:before {
+    color: white;
+    font-size: 36px;
+    cursor: pointer;
+    display: inline-block
+}
+.nav i {
+    margin: 10px 10px;
+    display: inline-block
+}
 .nav a {
     color: white;
     display: inline-block;
@@ -138,6 +148,22 @@ div.tooltip {
     -moz-transition: background-color 200ms ease;
     -o-transition: background-color 200ms ease;
     transition: background-color 200ms ease
+}
+.nav a.active {
+    background: white;
+    color: #f58625
+}
+.nav a.active:hover {
+    background: white;
+    color: #f58625
+}
+.nav a:hover {
+    background: #f4780d;
+    color: white
+}
+.mobile,
+i {
+    display: none
 }
 #hamburger-menu {
     display: none
@@ -167,4 +193,8 @@ div.tooltip {
         display: inline-block
     }
 }
+@media (max-height: 700px) {
+    #logo {
+        max-width: 200px
+    }
 }
