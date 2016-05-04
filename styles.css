@@ -189,6 +189,37 @@ p {
     font-size: 18px;
     line-height: 1.6
 }
+.orange {
+    color: #f58625
+}
+.bg-image {
+    width: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover
+}
+.orange-fill,
+.blue-fill {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 100
+}
+.orange-fill {
+    background: rgba(157, 77, 7, 0.6)
+}
+.blue-fill {
+    background: rgba(52, 67, 83, 0.6)
+}
+.bg-image h1 {
+    color: white;
+    z-index: 100;
+    position: absolute;
+    margin: 0 auto;
+    width: 100%;
+    font-weight: 400
+}
 .mobile,
 i {
     display: none
@@ -196,9 +227,8 @@ i {
 #hamburger-menu {
     display: none
 }
-
-.side-nav{
-    background-color: #F58625
+#mobile-nav{
+    display: none
 }
 @media (max-width: 1000px) {
     #hamburger-menu {

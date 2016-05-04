@@ -39,18 +39,43 @@
         <!-- Import Roboto Font -->
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <script>
-            //helps with the mobile navigation system
-            $( document ).ready(function(){
-                $(".button-collapse").sideNav();
-            })     
+            ready = function() {
+                function e() {
+                    $(".page").outerHeight($(window).height()), 
+                    wh = $(window).height(), 
+                    ww = $(window).width(), 
+                    $(".bg-image").outerHeight(.4 * wh), 
+                    $(".orange-fill, .blue-fill").height(.4 * wh), 
+                    $(".center-vertical").each(function() {
+                        amount = $(this).parent().height() / 2 - $(this).height() / 2, 
+                        $(this).hasClass("plus-nav") && (amount += $(".nav").height()), 
+                        $(this).hasClass("plus-nav"), 
+                        $(this).css("padding-top", amount)
+                    })
+                }
+                $("#hamburger-menu").click(function() {
+                    $("#mobile-nav").slideToggle("fast")
+                }),
+                $("a.mobile").click(function() {
+                    $("#mobile-nav").delay(400).slideUp("fast")
+                }), 
+                $("img").load(function() {
+                    e()
+                }), 
+                $(window).resize(function() {
+                    e()
+                }), 
+                e(), 
+            $(document).ready(ready), 
+            $(document).on("page:load", ready) 
         </script>
     </head>
 <body>
     <!-- class nav is used instead of element <nav> to avoid style clash with materialize -->
     <div class="nav">
         <!-- NavBar elements for desktops -->
-        <a class='desktop active' href='#home'>TigerCharts</a>
-        <a class='desktop' href='#topEmployers'>Top Employers</a>
+        <a class='desktop' href='#home'>TigerCharts</a> <!-- replace with logo -->
+        <a class='desktop active' href='#topEmployers'>Top Employers</a>
         <a class='desktop' href='#employmentMap'>Employment Map</a>
         <a class='desktop' href='#topMajors'>Top Employed Majors</a>
         <a class='desktop' href='#trends'>Employer Trends</a>
@@ -60,14 +85,11 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse" id="hamburger-menu"><i class="material-icons">menu</i></a>
         <!-- TigerCharts collapsed text -->
         <h2 class='mobile mob-nav-header' style='font-size: 24px; text-align: left; color: white; padding:0; margin: 0; position: relative; top: -5px; font-weight: 300'>TigerCharts</h2>
-        <div  >
-            <ul class="side-nav" id="mobile-demo">
-                <li><a class='mobile active' href='#home'>TigerCharts</a></li>
-                <li><a class='mobile' href='#topEmployers'>Top Employers</a></li>
-                <li><a class='mobile' href='#employmentMap'>Employment Map</a></li>
-                <li><a class='mobile' href='#topMajors'>Top Majors</a></li>
-                <li><a class='mobile' href='#trends'>Employer Trends</a></li>
-            </ul>
+        <div id="mobile-nav">
+        <a class='mobile active' href='#topEmployers'>Top Employers</a>
+        <a class='mobile' href='#employmentMap'>Employment Map</a>
+        <a class='mobile' href='#topMajors'>Top Majors</a>
+        <a class='mobile' href='#trends'>Employer Trends</a>
         </div>
     </div>    
     <div class="row orange lighten-3">
