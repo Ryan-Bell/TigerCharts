@@ -39,7 +39,9 @@
         <!-- Import Roboto Font -->
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <script>
+            //define the ready function which will be called when the page is ready
             ready = function() {
+                //handles calculating spacing variables based on window dimensions (ie. center-vertical)
                 function e() {
                     $(".page").outerHeight($(window).height()), 
                     wh = $(window).height(), 
@@ -53,19 +55,27 @@
                         $(this).css("padding-top", amount)
                     })
                 }
+                //click event for the mobile hamburger button
                 $("#hamburger-menu").click(function() {
+                    //show the div with jquery slide transition
                     $("#mobile-nav").slideToggle("fast")
                 }),
+                //click event for links on mobile
                 $("a.mobile").click(function() {
+                    //slide up the expanded menu
                     $("#mobile-nav").delay(400).slideUp("fast")
                 }), 
+                //recalc spacing vars if a img suddenly loads in
                 $("img").load(function() {
                     e()
                 }), 
+                //recalc spacing vars if the window is resized
                 $(window).resize(function() {
                     e()
                 }), 
                 e(), 
+            //map the ready function as the function to call on
+                //doc ready and the similar (older) page load 
             $(document).ready(ready), 
             $(document).on("page:load", ready) 
         </script>
