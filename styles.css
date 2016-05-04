@@ -197,6 +197,9 @@ i {
     display: none
 }
 
+.side-nav{
+    background-color: #F58625
+}
 @media (max-width: 1000px) {
     #hamburger-menu {
         display: inline-block
