@@ -231,6 +231,12 @@ i {
 #mobile-nav{
     display: none
 }
+.background{
+    /*image from http://www.talonx.com/file/2014/07/background.jpg*/
+    /*faded in Photoshop*/
+    background-image: url(./images/background.jpg);
+    background-color: #364555;
+}
 @media (max-width: 1000px) {
     #hamburger-menu {
         display: inline-block
