@@ -1,5 +1,3 @@
-
-
 //Sizes for the Top Employers Graph
 var width = "100%",
     height = 100,
