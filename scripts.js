@@ -200,33 +200,31 @@ d3.csv("dataset.csv", function(error,data){
     }
     majorObjList.sort(compare);
     
+    //Contruct the table to hold the info
+    var svg_employed = d3.select('#chart_top_employed_majors')
+        .append('table')
+            .attr('border', '0')
+            .attr('class', 'employedTable')
+        .append('tbody');
+    //add the table title element
+    svg_employed.append('th').text('Top Employed Majors');
+    
     var num_majors = 0;
     while (num_majors < majorObjList.length){
-        //Append an SVG element to the chart_top_employers div
-        var svg_employed = d3.select('#chart_top_employed_majors')
-            .append('svg')
-                .attr('width', '100%')
-                .attr('height', titleHeight);
-        var temp_width;
-        var plan_text = svg_employed.append('text')
-            .attr('class', 'chartTitle')
-            .attr('x', small_padding)
-            .attr('y', subtitleHeight)
-            .text(function(d){
-                return "#" + (num_majors + 1) + ") " + majorObjList[num_majors].name + ": ";
-            })
-            .each(function(d) {
-                temp_width = this.getBBox().width;
-            });
-        svg_employed.append('text')
-            .attr('class', 'chartTitleAccent')       
-            .attr('x', function(d){
-                return temp_width + xsmall_padding;
-            })
-            .attr('y', subtitleHeight)
-            .text(function(d){
-                return majorObjList[num_majors].value;
-            });
+
+        //add the table data
+        var tableRow = svg_employed.append('tr');
+            //add the major
+            tableRow.append('td')
+                .text(function(d){
+                    return "#" + (num_majors + 1) + ") " + majorObjList[num_majors].name + ": ";
+                });
+            //add the employment number
+            tableRow.append('td')
+                .text(function(d){
+                   return majorObjList[num_majors].value;
+                });
+
         num_majors++;
     }
     
