@@ -72,35 +72,39 @@ svg {
 /*-------MAP STYLES---------*/
 .land {
     fill: #fff;
-    stroke: #ccc;
+    stroke: #000;
 }
 
 .state {
     fill: #ccc;
-    stroke: #666;
+    stroke: #000;
 }
 .counties {
     fill: none;
     stroke: none;
 }
 
-.q0-9 { fill:rgb(247,251,255); }
-.q1-9 { fill:rgb(222,235,247); }
-.q2-9 { fill:rgb(198,219,239); }
-.q3-9 { fill:rgb(158,202,225); }
-.q4-9 { fill:rgb(107,174,214); }
-.q5-9 { fill:rgb(66,146,198); }
-.q6-9 { fill:rgb(33,113,181); }
-.q7-9 { fill:rgb(8,81,156); }
-.q8-9 { fill:rgb(8,48,107); }
-.q9-9 { fill:rgb(170,170,170); }
-/*repeating-linear-gradient(
-  45deg,
-  #e0e0e0,
-  #e0e0e0 10px,
-  #616161 10px,
-  #616161 20px
-);*/
+.q0-9 { fill:rgb(247,251,255); stroke: #000;}
+.q1-9 { fill:rgb(222,235,247); stroke: #000;}
+.q2-9 { fill:rgb(198,219,239); stroke: #000;}
+.q3-9 { fill:rgb(158,202,225); stroke: #000;}
+.q4-9 { fill:rgb(107,174,214); stroke: #000;}
+.q5-9 { fill:rgb(66,146,198); stroke: #000;}
+.q6-9 { fill:rgb(33,113,181); stroke: #000;}
+.q7-9 { fill:rgb(8,81,156); stroke: #000;}
+.q8-9 { fill:rgb(8,48,107); stroke: #000;}
+.q9-9 { fill:rgb(170,170,170); stroke: #000;}
+
+.q0-9:hover { fill:rgb(243,110,33); stroke: #000;}
+.q1-9:hover { fill:rgb(243,110,33); stroke: #000;}
+.q2-9:hover { fill:rgb(243,110,33); stroke: #000;}
+.q3-9:hover { fill:rgb(243,110,33); stroke: #000;}
+.q4-9:hover { fill:rgb(243,110,33); stroke: #000;}
+.q5-9:hover { fill:rgb(243,110,33); stroke: #000;}
+.q6-9:hover { fill:rgb(243,110,33); stroke: #000;}
+.q7-9:hover { fill:rgb(243,110,33); stroke: #000;}
+.q8-9:hover { fill:rgb(243,110,33); stroke: #000;}
+.q9-9:hover { fill:rgb(243,110,33); stroke: #000;}
 
 
 /*--------EMPLOYER TREND STYLES--------*/

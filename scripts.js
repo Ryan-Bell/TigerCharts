@@ -482,7 +482,7 @@ d3.csv("dataset.csv", function(error,data){
             .attr("d", path)
             .attr("class", function(d) { 
                 console.log(Idsstate[d.id] + ": " + stateCounts[d.id])
-                if(isNaN(stateCounts[d.id])){ return "q9-9"; }
+                if(isNaN(stateCounts[d.id])){ stateCounts[d.id] = 0; return "q9-9"; }
                 return quantize(stateCounts[d.id]); 
             })
             .on('mouseover',function(d){
