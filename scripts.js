@@ -1,15 +1,14 @@
 //Sizes for the Top Employers Graph
 var width = "100%",
-    height = 100,
     textHeight = 50,
     titleHeight = 50,
     subtitleHeight = 20,
-    barWidth = 50,
     barOffset = 5,
     padding = 10,
     small_padding = 5,
     xsmall_padding = 2,
-    NUMBER_TOP_EMPLOYERS_SHOWN = 5;
+    NUMBER_TOP_EMPLOYERS_SHOWN = 5,
+    BAR_PADDING = 8;
 
 //List of all Top Employers
 var topEmployersObjList = [];
@@ -107,7 +106,7 @@ d3.csv("dataset.csv", function(error,data){
         //number of bars in the graph and the width of the graph
         var numBars = tempArray.length;
         var chartWidth = $('.chartBackground').width();
-        barWidth =  chartWidth / numBars; 
+        barWidth =  chartWidth / numBars - BAR_PADDING; 
             
         //adding the actual bars
         svg_bar_chart.selectAll('div').data(tempArray)
@@ -115,6 +114,7 @@ d3.csv("dataset.csv", function(error,data){
                     .attr('class', 'chartBarHolder')
                 .append('svg')
                     .attr('width', barWidth)
+                    //set the hieght to be the hieght of the graph
                     .attr('height', function(d){
                         return $('.chartBackground').height();
                     })
@@ -124,6 +124,7 @@ d3.csv("dataset.csv", function(error,data){
                     .attr('height', function(d){
                         if (isFirstColumn){
                             isFirstColumn = false;
+                            //use the height of the graph to determine scale but give padding
                             barScale = ($('.chartBackground').height() - 10) / d.value;
                         }
                         return d.value * barScale;
@@ -146,21 +147,36 @@ d3.csv("dataset.csv", function(error,data){
                             .duration(500)		
                             .style("opacity", 0);	
                     });*/
+    var currentBar = -1;
+    d3.select('#chart_top_employers')
+        .append('svg')
+        .attr('width',width)
+        .attr('height', textHeight)
+        .selectAll('text').data(tempArray)
+        .enter().append('text')
+            .attr('x', function(d,i){
+                currentBar++;
+                return currentBar * barWidth + 4;
+            })
+            .attr('y', 10)
+            .text(function(d){
+                return d.plan;
+            })
+            .attr('class','chartSubLabel')
+            .attr('fill','black')
+            .attr('transform', 'rotate(30 20,40)');
         //add the bar label text
         d3.select('#chart_top_employers')
-            .append('svg')
-                .attr('width',width)
-                .attr('height', textHeight)
-                .selectAll('text').data(tempArray)
-                .enter().append('text')
-                    .attr('x', function(d,i){
-                        return i * (barWidth + barOffset);
-                    })
-                    .text(function(d){
+            .append('div')
+                .attr('class', 'barLabelHolder')
+            .selectAll('h5').data(tempArray)
+            .enter().append('h5')
+            .text(function(d){
                         return d.plan;
-                    })
-                    .attr('class','chartSubLabel')
-                    .attr('fill','black');
+             })
+             .attr('class', 'barLabel');
+
+            
         /*
         var svg = d3.select('#chart_top_employers')
             .append('svg')

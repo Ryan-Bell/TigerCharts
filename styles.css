@@ -62,7 +62,8 @@ div.tooltip {
 }
 
 .chartBarHolder{
-    display: inline-block
+    display: inline-block;
+    padding-left: 7px;
 }
 svg {
     display: inline-block;
