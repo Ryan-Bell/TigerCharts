@@ -445,4 +445,26 @@ d3.csv("dataset.csv", function(error,data){
     });
                             
 });
+
+//Recalc methods
+function recalcTopEmployers(){
+    //early return if the page width is more than the map
+    if ($(".nav").width() > $("#map_employment > svg").width()){
+        return;
+    }
+    //select the svg element, then all the child paths    
+    d3.select("#map_employment > svg")
+    .selectAll("path")
+    //add a scale transform attribute of (containerWidth / pathWidth)
+    .attr("transform", function(d){
+        return "scale(" + ($("#map_employment").width() / $("#map_employment > svg").width()) + ", " + ($("#map_employment").width() / $("#map_employment > svg").width()) + ")";
+    })
+}
+
+function recalcMap(){
     
+}
+
+function recalcTrends(){
+    
+}

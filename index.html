@@ -1,3 +1,11 @@
+<!-- TODO LIST
+ - The bars in the top employers section are the wrong color orange
+ - Replace JT with other images
+ 
+
+
+
+-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -55,7 +63,11 @@
                         $(this).hasClass("plus-nav") && (amount += $(".nav").height()), 
                         $(this).hasClass("plus-nav"), 
                         $(this).css("padding-top", amount)
-                    })
+                    });
+                    //recalc the various items created by d3
+                    recalcTopEmployers();
+                    recalcMap();
+                    recalcTrends();
                 }
                 //click event for the mobile hamburger button
                 $("#hamburger-menu").click(function() {
@@ -119,7 +131,7 @@
             <a class='desktop jumpLink' href='#home'>TigerCharts</a> <!-- replace with logo -->
             <a class='desktop jumpLink active' href='#topEmployers'>Top Employers</a>
             <a class='desktop jumpLink' href='#employmentMap'>Employment Map</a>
-            <a class='desktop jumpLink' href='#topMajors'>Top Employed Majors</a>
+            <a class='desktop jumpLink' href='#chart_top_employed_majors'>Top Employed Majors</a>
             <a class='desktop jumpLink' href='#trends'>Employer Trends</a>
             
             <!-- Collapsed navbar that will show for mobile devices -->
@@ -130,7 +142,7 @@
             <div id="mobile-nav">
                 <a class='mobile jumpLink active' href='#topEmployers'>Top Employers</a>
                 <a class='mobile jumpLink' href='#employmentMap'>Employment Map</a>
-                <a class='mobile jumpLink' href='#topMajors'>Top Majors</a>
+                <a class='mobile jumpLink' href='#chart_top_employed_majors'>Top Majors</a>
                 <a class='mobile jumpLink' href='#trends'>Employer Trends</a>
             </div>
         </div>
