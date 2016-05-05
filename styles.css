@@ -259,7 +259,7 @@ table{
     border-collapse: separate;    
 }
 .employedTable {
-    width: 100%;
+    width: 70%;
     border: 2px #ffe1c9 solid;
     box-sizing: border-box;
     border-radius: 8px;
