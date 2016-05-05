@@ -43,15 +43,15 @@ div.tooltip {
 }
 
 .chartSubLabel {
-    fill: white;
+    fill: #222;
     font-family: 'Roboto', sans-serif;
-    font-size: 8px;
+    font-size: 13px;
     fill-opacity: 0.70;
 }
 
 .chartBackground {
     background: #e0e0e0;
-    height: 150px;
+    height: 300px;
 }
 
 .chartBar {
@@ -259,7 +259,7 @@ table{
     border-collapse: separate;    
 }
 .employedTable {
-    width: 70%;
+    width: 100%;
     border: 2px #ffe1c9 solid;
     box-sizing: border-box;
     border-radius: 8px;
@@ -306,6 +306,9 @@ table{
 }
 
 @media (max-width: 1000px) {
+    .chartSubLabel {
+        font-size: 10px;
+    }
     #hamburger-menu {
         display: inline-block
     }
