@@ -4,10 +4,6 @@ body {
   color: white
 }
 
-svg {
-  padding: 10px 0 0 10px;
-}
-
 .arc {
   stroke: #fff;
 }
@@ -71,6 +67,7 @@ div.tooltip {
 svg {
     display: inline-block;
     padding: 0;
+    height: 100%
 }
 /*-------MAP STYLES---------*/
 .land{
