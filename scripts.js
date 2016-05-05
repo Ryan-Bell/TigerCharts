@@ -57,12 +57,12 @@ d3.csv("dataset.csv", function(error,data){
     topEmployersObjList.sort(compare);
     
     
-    
+    /*
     //Create the div for the tooltip
     var div = d3.select("body").append("div")	
         .attr("class", "tooltip")				
         .style("opacity", 0);
-    
+    */
     
     //Loop over the top x number of employers and create their graphs
     var i = 0;
@@ -129,7 +129,7 @@ d3.csv("dataset.csv", function(error,data){
                         //chart height - bar height 
                         var chartHeight = $('.chartBackground').height();
                         return chartHeight - d.value * barScale;
-                    })
+                    })/*
                     .on('mouseover',function(d){
                         div.transition()
                             .duration(100)
@@ -142,7 +142,7 @@ d3.csv("dataset.csv", function(error,data){
                         div.transition()		
                             .duration(500)		
                             .style("opacity", 0);	
-                    });
+                    });*/
         //add the bar label text
         d3.select('#chart_top_employers')
             .append('svg')
@@ -407,78 +407,6 @@ d3.csv("dataset.csv", function(error,data){
         
         num_terms++;
     }   
-        
-    //----- Map -----
     
-    var mapWidth = 960,
-    mapHeight = 600;
-
-    var rateById = d3.map();
-    //attempting to count up number of entries for each term
-    var counts = {};
-    //iterate over each row
-    data.forEach(function(r) {
-        //if the term is not in the list above, add it
-        if (!counts[r.State]) {
-            counts[r.State] = 0;
-        }
-        //increment the count for the term type of current row
-        counts[r.State]++;
-    });
-    
-    //reconverting back to an arrray for use by d3
-    var termCounts = [];
-    //set the keys as the first value in the counts tuples
-    Object.keys(counts).forEach(function(key) {
-        //add the term name and count to this array
-        //console.log(key + " : " + counts[key]);
-        termCounts.push({
-            Term: key,
-            count: counts[key]
-        });
-    });
-    
-  //replace data with termCounts array
-  data = termCounts;
-  
-  queue()
-    .defer(d3.json, "us.json")
-    //.defer(d3.tsv, "unemployment.tsv", function(d) { rateById.set(d.id, +d.rate); })
-    .await(ready);
-    
-var quantize = d3.scale.quantize()
-    .domain([0, .15])
-    .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
-
-var projection = d3.geo.albersUsa()
-    .scale(1280)
-    .translate([mapWidth / 2, mapHeight / 2]);
-
-var path = d3.geo.path()
-    .projection(projection);
-
-var svg = d3.select("#map_employment").append("svg")
-    .attr("width", mapWidth)
-    .attr("height", mapHeight);
-
-function ready(error, us) {
-  if (error) throw error;
-
-  svg.append("g")
-      .attr("class", "counties")
-    .selectAll("path")
-      .data(topojson.feature(us, us.objects.counties).features)
-    .enter().append("path")
-      .attr("class", function(d) { return quantize(rateById.get(d.id)); })
-      .attr("d", path);
-
-  svg.append("path")
-      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-      .attr("class", "states")
-      .attr("d", path);
-}
-
-d3.select(self.frameElement).style("height", mapHeight + "px");
-     
 });
     
