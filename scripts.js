@@ -169,7 +169,6 @@ d3.csv("dataset.csv", function(error,data){
                 return d.plan;
             })
             .attr('class','chartSubLabel')
-            .attr('fill','black')
             //anchor the text by the center instead of left to account for variable length
             .attr('text-anchor', 'middle');
             
@@ -318,6 +317,8 @@ d3.csv("dataset.csv", function(error,data){
     .append("svg")
         .attr("width", trend_width + margin.left + margin.right)
         .attr("height", trend_height + margin.top + margin.bottom)
+        .style("display", "block")
+        .style("margin", "auto")
     .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -397,9 +398,14 @@ d3.csv("dataset.csv", function(error,data){
 
         var path = d3.geo.path();
 
-        var svg = d3.select("#map_employment").append("svg")
+        var svg = d3.select("#map_employment")
+        .style("display", "block")
+        .style("margin", "auto")
+        .append("svg")
             .attr("width", 960)
-            .attr("height", 500);
+            .attr("height", 500)
+            .style("display", "block")
+            .style("margin", "auto");
         
         var div = d3.select("body").append("div")	
         .attr("class", "tooltip")				
