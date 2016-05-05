@@ -448,6 +448,72 @@ d3.csv("dataset.csv", function(error,data){
 
 //Recalc methods
 function recalcTopEmployers(){
+    //index of the current chart
+    var i = 0;
+    var barArray;
+    var numBars;
+    var chartWidth;
+    var barWidth;
+    //changing of the bar widths
+    d3.select("#chart_top_employers")
+    .selectAll(".chartBackground")
+    .each(function(d){
+        var tempArray = [];
+        //Iterate over all elements in the i'th topEmployersObj
+        //The object has a 'plan', a 'value', and a number of plans such as 'SOFTENG-BS'
+        for(var plan in topEmployersObjList[i]){
+            if (plan != "value" && plan != "name"){
+                //The object that will have a 'plan' and a 'value'
+                var rowObj = {};
+                rowObj.plan = plan;
+                rowObj.value = topEmployersObjList[i][plan];
+                //Add this object to the Array of plan objects
+                tempArray.push(rowObj);
+            }
+        }
+        //iterate i so the next table calcs the correct num bars
+        i++;
+        barArray = tempArray;
+        numBars = barArray.length;
+        chartWidth = $('.chartBackground').width();
+        //set bar width to be used in the children
+        barWidth =  chartWidth / numBars - BAR_PADDING;
+        
+        //select the child elems and set width
+        d3.selectAll(this.childNodes)
+        .select("svg")
+            .attr("width", barWidth)
+        .selectAll("rect")
+            .attr("width", barWidth); 
+            
+        var currentBar = -1;            
+        //select sibling element
+        d3.select(this.nextSibling)
+        .selectAll("text")
+        .attr('x', function(d,i){
+                //update the current bar index
+                currentBar++;
+                //currentBar * (barWidth + 7) moves the text to the beginning of each bar
+                    //7 is the padding for the bars
+                //(barWidth * .5) moves the ttext to the center of the bar
+                return currentBar * (barWidth + 7) + (barWidth * 0.5);
+            });
+    })
+     
+    /*
+    var currentBar = 0;
+    //changing of the labels
+    d3.select("#chart_top_employers")
+    .selectAll("svg")
+    .selectAll("text")
+    .attr('x', function(d,i){
+        currentBar++;
+        return currentBar * (barWidth + 7) + (barWidth * 0.5);
+    })
+      */  
+}
+
+function recalcMap(){
     //early return if the page width is more than the map
     if ($(".nav").width() > $("#map_employment > svg").width()){
         return;
@@ -459,10 +525,6 @@ function recalcTopEmployers(){
     .attr("transform", function(d){
         return "scale(" + ($("#map_employment").width() / $("#map_employment > svg").width()) + ", " + ($("#map_employment").width() / $("#map_employment > svg").width()) + ")";
     })
-}
-
-function recalcMap(){
-    
 }
 
 function recalcTrends(){
