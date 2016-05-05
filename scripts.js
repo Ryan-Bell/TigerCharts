@@ -448,11 +448,8 @@ d3.csv("dataset.csv", function(error,data){
         Object.keys(counts).forEach(function(key) {
             //add the state name and count to this array
             stateCounts[stateIds[key]] = counts[key]
-            console.log(key + " : " + counts[key]);
         });
         
-        console.log(stateCounts);
-
         var quantize = d3.scale.quantize()
             .domain([0, 150])
             .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
@@ -481,7 +478,6 @@ d3.csv("dataset.csv", function(error,data){
             .attr("class", "state")
             .attr("d", path)
             .attr("class", function(d) { 
-                console.log(Idsstate[d.id] + ": " + stateCounts[d.id])
                 if(isNaN(stateCounts[d.id])){ stateCounts[d.id] = 0; return "q9-9"; }
                 return quantize(stateCounts[d.id]); 
             })
