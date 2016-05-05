@@ -99,7 +99,17 @@
             //map the ready function as the function to call on
                 //doc ready and the similar (older) page load 
             $(document).ready(ready), 
-            $(document).on("page:load", ready) 
+            $(document).on("page:load", ready)
+            
+            //Materialize Jquery ScrollFire
+            var options = [
+                {selector: '#image-test', offset: 500, callback: function() {
+                    Materialize.fadeInImage("#image-test");
+                } }
+            ];
+            Materialize.scrollFire(options); 
+            
+            //readjust the width of the bars on the bar graph
         </script>
     </head>
     <body>
@@ -186,4 +196,4 @@
         </div>    
         <div class='bg-image' style='background-image: url(./images/JT.jpg)'></div>
     </body>
-<html>
+</html>
