@@ -410,6 +410,96 @@ d3.csv("dataset.csv", function(error,data){
         
         num_terms++;
     }   
-    
+                             
+    // MAP SCRIPTS
+    //creating the map for state ids
+    var stateIds = {};
+    var Idsstate = {};
+
+    d3.tsv("us-state-names.tsv", function(error, statedata){
+        statedata.forEach(function(d){
+            stateIds[d.code] = d.id;
+            Idsstate[d.id] = d.code;
+        });
+        
+        //attempting to count up number of entries for each state
+        var counts = {};
+        //iterate over each row
+        data.forEach(function(r) {
+            //if the state is not in the list above, add it
+            if (!counts[r.State]) {
+                counts[r.State] = 0;
+            }
+            //increment the count for the state of current row
+            counts[r.State]++;
+        });
+        
+        //reconverting back to an arrray for use by d3
+        var stateCounts = [
+            NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN,
+            NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN,
+            NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN,
+            NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN,
+            NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN,
+            NaN, NaN, NaN, NaN, NaN, NaN. NaN
+            ];
+        
+        //set the keys as the first value in the counts tuples
+        Object.keys(counts).forEach(function(key) {
+            //add the state name and count to this array
+            stateCounts[stateIds[key]] = counts[key]
+            console.log(key + " : " + counts[key]);
+        });
+        
+        console.log(stateCounts);
+
+        var quantize = d3.scale.quantize()
+            .domain([0, 150])
+            .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
+
+        var path = d3.geo.path();
+
+        var svg = d3.select("#map_employment").append("svg")
+            .attr("width", 960)
+            .attr("height", 500);
+        
+        var div = d3.select("body").append("div")	
+        .attr("class", "tooltip")				
+        .style("opacity", 0);
+
+        d3.json("./us.json", function(error, us) {
+        if (error) throw error;
+
+        svg.append("path")
+            .datum(topojson.feature(us, us.objects.land))
+            .attr("class", "land")
+            .attr("d", path);
+
+        svg.selectAll(".state")
+            .data(topojson.feature(us, us.objects.states).features)
+            .enter().append("path")
+            .attr("class", "state")
+            .attr("d", path)
+            .attr("class", function(d) { 
+                console.log(Idsstate[d.id] + ": " + stateCounts[d.id])
+                if(isNaN(stateCounts[d.id])){ return "q9-9"; }
+                return quantize(stateCounts[d.id]); 
+            })
+            .on('mouseover',function(d){
+                    div.transition()
+                        .duration(100)
+                        .style('opacity',.9);
+                    div.html(Idsstate[d.id] + ": " + stateCounts[d.id] + "<br/>")
+                        .style('left', (d3.event.pageX) + "px")
+                        .style('top', (d3.event.pageY - 28) + "px");
+                })
+                .on("mouseout", function(d) {		
+                    div.transition()		
+                        .duration(500)		
+                        .style("opacity", 0);	
+                });
+        });
+    });
+                            
 });
     

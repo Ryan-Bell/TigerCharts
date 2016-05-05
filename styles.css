@@ -70,19 +70,18 @@ svg {
     height: 100%
 }
 /*-------MAP STYLES---------*/
-.land{
+.land {
     fill: #fff;
-    stroke: #111;
-}
-.counties {
-  fill: none;
-  stroke: none;
+    stroke: #ccc;
 }
 
-.states {
-  fill: none;
-  stroke: #111;
-  stroke-linejoin: round;
+.state {
+    fill: #ccc;
+    stroke: #666;
+}
+.counties {
+    fill: none;
+    stroke: none;
 }
 
 .q0-9 { fill:rgb(247,251,255); }
@@ -94,6 +93,15 @@ svg {
 .q6-9 { fill:rgb(33,113,181); }
 .q7-9 { fill:rgb(8,81,156); }
 .q8-9 { fill:rgb(8,48,107); }
+.q9-9 { fill:rgb(170,170,170); }
+/*repeating-linear-gradient(
+  45deg,
+  #e0e0e0,
+  #e0e0e0 10px,
+  #616161 10px,
+  #616161 20px
+);*/
+
 
 /*--------EMPLOYER TREND STYLES--------*/
 .axis path,
