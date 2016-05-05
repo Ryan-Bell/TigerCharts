@@ -124,7 +124,7 @@ d3.csv("dataset.csv", function(error,data){
                     .attr('height', function(d){
                         if (isFirstColumn){
                             isFirstColumn = false;
-                            barScale = (height) / d.value;
+                            barScale = ($('.chartBackground').height() - 10) / d.value;
                         }
                         return d.value * barScale;
                     })
