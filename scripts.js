@@ -115,6 +115,9 @@ d3.csv("dataset.csv", function(error,data){
                     .attr('class', 'chartBarHolder')
                 .append('svg')
                     .attr('width', barWidth)
+                    .attr('height', function(d){
+                        return $('.chartBackground').height();
+                    })
                 .append('rect')
                     .attr('class', 'chartBar')
                     .attr('width', barWidth)
