@@ -8,7 +8,8 @@ var width = "100%",
     barOffset = 5,
     padding = 10,
     small_padding = 5,
-    xsmall_padding = 2;
+    xsmall_padding = 2,
+    NUMBER_TOP_EMPLOYERS_SHOWN = 5;
 
 //List of all Top Employers
 var topEmployersObjList = [];
@@ -49,22 +50,23 @@ d3.csv("dataset.csv", function(error,data){
             return 0;
     }
     
-    //Adds all employers in the tableObj to the topEmployersObjList and sotrs it
+    //Adds all employers in the tableObj to the topEmployersObjList and sorts it
     for(var key in tableObj){
         topEmployersObjList.push(tableObj[key]);
     }
     topEmployersObjList.sort(compare);
     
-    console.log(topEmployersObjList[0]);
+    
     
     //Create the div for the tooltip
     var div = d3.select("body").append("div")	
         .attr("class", "tooltip")				
         .style("opacity", 0);
     
+    
     //Loop over the top x number of employers and create their graphs
     var i = 0;
-    while(i < 5){
+    while(i < NUMBER_TOP_EMPLOYERS_SHOWN){
         var isFirstColumn = true;
         var barScale;
         
@@ -85,6 +87,78 @@ d3.csv("dataset.csv", function(error,data){
         //Sort the Array of plan objects greatest to least
         tempArray.sort(compare);
         
+        //adding the company chart title
+        var svg = d3.select('#chart_top_employers')
+            svg.append('h2')
+            .text(function(d){
+                return topEmployersObjList[i].name;
+            });
+            svg.append('h3')
+            .text(function(d){
+                return "Total: " + topEmployersObjList[i].value;
+            });
+
+        //chart backdrop                    
+        var svg_bar_chart = d3.select('#chart_top_employers')
+            .append('div')
+            .attr('class', 'chartBackground');
+            
+        //calculate how wide the bars should be for this graph based on the 
+        //number of bars in the graph and the width of the graph
+        var numBars = tempArray.length;
+        var chartWidth = $('.chartBackground').width();
+        barWidth =  chartWidth / numBars; 
+            
+        //adding the actual bars
+        svg_bar_chart.selectAll('div').data(tempArray)
+            .enter().append('div')
+                    .attr('class', 'chartBarHolder')
+                .append('svg')
+                    .attr('width', barWidth)
+                .append('rect')
+                    .attr('class', 'chartBar')
+                    .attr('width', barWidth)
+                    .attr('height', function(d){
+                        if (isFirstColumn){
+                            isFirstColumn = false;
+                            barScale = (height) / d.value;
+                        }
+                        return d.value * barScale;
+                    })
+                    .attr('y', function(d){
+                        //chart height - bar height 
+                        var chartHeight = $('.chartBackground').height();
+                        return chartHeight - d.value * barScale;
+                    })
+                    .on('mouseover',function(d){
+                        div.transition()
+                            .duration(100)
+                            .style('opacity',.9);
+                        div.html(d.plan + ": " + d.value + "<br/>")
+                            .style('left', (d3.event.pageX) + "px")
+                            .style('top', (d3.event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function(d) {		
+                        div.transition()		
+                            .duration(500)		
+                            .style("opacity", 0);	
+                    });
+        //add the bar label text
+        d3.select('#chart_top_employers')
+            .append('svg')
+                .attr('width',width)
+                .attr('height', textHeight)
+                .selectAll('text').data(tempArray)
+                .enter().append('text')
+                    .attr('x', function(d,i){
+                        return i * (barWidth + barOffset);
+                    })
+                    .text(function(d){
+                        return d.plan;
+                    })
+                    .attr('class','chartSubLabel')
+                    .attr('fill','black');
+        /*
         var svg = d3.select('#chart_top_employers')
             .append('svg')
                 .attr('width', width)
@@ -152,7 +226,7 @@ d3.csv("dataset.csv", function(error,data){
                     })
                     .attr('class','chartSubLabel')
                     .attr('fill','black');
-        
+        */
         i++;
     }
     
@@ -357,7 +431,7 @@ d3.csv("dataset.csv", function(error,data){
     //set the keys as the first value in the counts tuples
     Object.keys(counts).forEach(function(key) {
         //add the term name and count to this array
-        console.log(key + " : " + counts[key]);
+        //console.log(key + " : " + counts[key]);
         termCounts.push({
             Term: key,
             count: counts[key]

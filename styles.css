@@ -64,6 +64,13 @@ div.tooltip {
     fill: #BF360C;
 }
 
+.chartBarHolder{
+    display: inline-block
+}
+svg {
+    display: inline-block;
+    padding: 0;
+}
 /*-------MAP STYLES---------*/
 .land{
     fill: #fff;
