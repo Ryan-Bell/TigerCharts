@@ -86,16 +86,16 @@ svg {
     stroke: none;
 }
 
-.q0-9 { fill:rgb(247,251,255); stroke: #000;}
-.q1-9 { fill:rgb(222,235,247); stroke: #000;}
-.q2-9 { fill:rgb(198,219,239); stroke: #000;}
-.q3-9 { fill:rgb(158,202,225); stroke: #000;}
-.q4-9 { fill:rgb(107,174,214); stroke: #000;}
-.q5-9 { fill:rgb(66,146,198); stroke: #000;}
-.q6-9 { fill:rgb(33,113,181); stroke: #000;}
-.q7-9 { fill:rgb(8,81,156); stroke: #000;}
-.q8-9 { fill:rgb(8,48,107); stroke: #000;}
-.q9-9 { fill:rgb(170,170,170); stroke: #000;}
+.q0-9 { fill:rgb(204,221,235); stroke: #000;}
+.q1-9 { fill:rgb(178,204,225); stroke: #000;}
+.q2-9 { fill:rgb(153,187,215); stroke: #000;}
+.q3-9 { fill:rgb(128,171,205); stroke: #000;}
+.q4-9 { fill:rgb(102,154,195); stroke: #000;}
+.q5-9 { fill:rgb(77,137,185); stroke: #000;}
+.q6-9 { fill:rgb(51,120,175); stroke: #000;}
+.q7-9 { fill:rgb(26,103,165); stroke: #000;}
+.q8-9 { fill:rgb(1,87,155); stroke: #000;}
+.q9-9 { fill:rgb(255,255,255); stroke: #000;}
 
 .q0-9:hover { fill:rgb(243,110,33); stroke: #000;}
 .q1-9:hover { fill:rgb(243,110,33); stroke: #000;}
