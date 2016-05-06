@@ -58,7 +58,7 @@ d3.csv("dataset.csv", function(error,data){
     
     /*
     //Create the div for the tooltip
-    var div = d3.select("body").append("div")	
+    var div = d3.select("body").append("span")	
         .attr("class", "tooltip")				
         .style("opacity", 0);
     */
@@ -211,6 +211,9 @@ d3.csv("dataset.csv", function(error,data){
                     .duration(500)		
                     .style("opacity", 0);	
             })*/
+            .append("span")
+            .text(function(d){
+                d.plan + ": " + d.value});
                     
     //add the bar label text
     var currentBar = -1;
