@@ -56,12 +56,12 @@ d3.csv("dataset.csv", function(error,data){
     topEmployersObjList.sort(compare);
     
     
-    
+    /*
     //Create the div for the tooltip
     var div = d3.select("body").append("div")	
         .attr("class", "tooltip")				
         .style("opacity", 0);
-    
+    */
     
     //Loop over the top x number of employers and create their graphs
     var i = 0;
@@ -102,6 +102,8 @@ d3.csv("dataset.csv", function(error,data){
             .append('div')
             .attr('class', 'chartBackground');
             
+
+            
         //calculate how wide the bars should be for this graph based on the 
         //number of bars in the graph and the width of the graph
         var numBars = tempArray.length;
@@ -109,7 +111,7 @@ d3.csv("dataset.csv", function(error,data){
         barWidth =  chartWidth / numBars - BAR_PADDING; 
             
         //adding the actual bars
-        svg_bar_chart.selectAll('div').data(tempArray)
+        var svg = svg_bar_chart.selectAll('div').data(tempArray)
             .enter().append('div')
                     .attr('class', 'chartBarHolder')
                 .append('svg')
@@ -117,36 +119,98 @@ d3.csv("dataset.csv", function(error,data){
                     //set the hieght to be the hieght of the graph
                     .attr('height', function(d){
                         return $('.chartBackground').height();
-                    })
-                .append('rect')
-                    .attr('class', 'chartBar')
-                    .attr('width', barWidth)
-                    .attr('height', function(d){
-                        if (isFirstColumn){
-                            isFirstColumn = false;
-                            //use the height of the graph to determine scale but give padding
-                            barScale = ($('.chartBackground').height() - 10) / d.value;
-                        }
-                        return d.value * barScale;
-                    })
-                    .attr('y', function(d){
-                        //chart height - bar height 
-                        var chartHeight = $('.chartBackground').height();
-                        return chartHeight - d.value * barScale;
-                    })
-                    .on('mouseover',function(d){
-                        div.transition()
-                            .duration(100)
-                            .style('opacity',.9);
-                        div.html(d.plan + ": " + d.value + "<br/>")
-                            .style('left', (d3.event.pageX) + "px")
-                            .style('top', (d3.event.pageY - 28) + "px");
-                    })
-                    .on("mouseout", function(d) {		
-                        div.transition()		
-                            .duration(500)		
-                            .style("opacity", 0);	
                     });
+        
+        //apply the first gradient def to the svg elem                    
+        var gradient = svg
+            .append('defs')
+            .append('linearGradient')
+                .attr('id', 'grad1')
+                .attr('x1', '0%')
+                .attr('y1', '0%')
+                .attr('x2', '100%')
+                .attr('y2', '0%');
+        
+        //define the gradient colors and percentages
+        gradient.append('stop')
+            .attr('offset', "0%")
+            .attr('style', 'stop-color:#eea151')
+            .attr('stop-opacity', 1);
+        gradient.append('stop')
+            .attr('offset', "49%")
+            .attr('style', 'stop-color:#ea8f44')
+            .attr('stop-opacity', 1);
+        gradient.append('stop')
+            .attr('offset', "50%")
+            .attr('style', 'stop-color:#e67e28')
+            .attr('stop-opacity', 1);
+        gradient.append('stop')
+            .attr('offset', "100%")
+            .attr('style', 'stop-color:#e06818')
+            .attr('stop-opacity', 1);
+            
+        //apply the 2nd gradient def to the svg
+        var gradient2 = svg
+            .append('defs')
+            .append('linearGradient')
+                .attr('id', 'grad2')
+                .attr('x1', '0%')
+                .attr('y1', '0%')
+                .attr('x2', '100%')
+                .attr('y2', '0%');
+                
+        //define the gradient colors and percentages
+        gradient2.append('stop')
+            .attr('offset', "0%")
+            .attr('style', 'stop-color:#747474')
+            .attr('stop-opacity', 1);
+        gradient2.append('stop')
+            .attr('offset', "49%")
+            .attr('style', 'stop-color:#676767')
+            .attr('stop-opacity', 1);
+        gradient2.append('stop')
+            .attr('offset', "50%")
+            .attr('style', 'stop-color:#505050')
+            .attr('stop-opacity', 1);
+        gradient2.append('stop')
+            .attr('offset', "100%")
+            .attr('style', 'stop-color:#414141')
+            .attr('stop-opacity', 1);
+
+        svg.append('rect')
+            .attr('class', 'chartBar')
+            .attr('width', barWidth)
+            .attr('height', function(d){
+                if (isFirstColumn){
+                    isFirstColumn = false;
+                    //use the height of the graph to determine scale but give padding
+                    barScale = ($('.chartBackground').height() - 10) / d.value;
+                }
+                return d.value * barScale;
+            })
+            .attr('y', function(d){
+                //chart height - bar height 
+                var chartHeight = $('.chartBackground').height();
+                return chartHeight - d.value * barScale;
+            })
+            //round the corners a bit
+            .attr('rx', 3)
+            .attr('ry', 3)
+            .attr('fill', "url(#grad1)")
+            /*
+            .on('mouseover',function(d){
+                div.transition()
+                    .duration(100)
+                    .style('opacity',.9);
+                div.html(d.plan + ": " + d.value + "<br/>")
+                    .style('left', (d3.event.pageX) + "px")
+                    .style('top', (d3.event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(d) {		
+                div.transition()		
+                    .duration(500)		
+                    .style("opacity", 0);	
+            })*/
                     
     //add the bar label text
     var currentBar = -1;

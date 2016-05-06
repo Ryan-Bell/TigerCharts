@@ -54,14 +54,12 @@ div.tooltip {
     height: 300px;
 }
 
-.chartBar {
-    fill: #FF5722;
-}
+.chartBar {}
 
 .chartBar:hover {
-    fill: #BF360C;
+    fill: url(#grad2);
 }
-
+}
 .chartBarHolder{
     display: inline-block;
     padding-left: 7px;
