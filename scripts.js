@@ -136,17 +136,7 @@ d3.csv("dataset.csv", function(error,data){
             .attr('offset', "0%")
             .attr('style', 'stop-color:#eea151')
             .attr('stop-opacity', 1);
-            /*
-        gradient.append('stop')
-            .attr('offset', "49%")
-            .attr('style', 'stop-color:#ea8f44')
-            .attr('stop-opacity', 1);
 
-        gradient.append('stop')
-            .attr('offset', "50%")
-            .attr('style', 'stop-color:#e67e28')
-            .attr('stop-opacity', 1);
-            */
         gradient.append('stop')
             .attr('offset', "100%")
             .attr('style', 'stop-color:#e06818')
@@ -171,15 +161,6 @@ d3.csv("dataset.csv", function(error,data){
             .attr('offset', "100%")
             .attr('style', 'stop-color:#414141')
             .attr('stop-opacity', 1);
-/*
-        gradient2.append('stop')
-            .attr('offset', "50%")
-            .attr('style', 'stop-color:#505050')
-            .attr('stop-opacity', 1);
-        gradient2.append('stop')
-            .attr('offset', "100%")
-            .attr('style', 'stop-color:#414141')
-            .attr('stop-opacity', 1); */
 
         var rect = svg.append('rect')
             .attr('class', 'chartBar')
@@ -685,18 +666,6 @@ function recalcTopEmployers(){
                 return currentBar * (barWidth + 7) + (barWidth * 0.5);
             });
     })
-     
-    /*
-    var currentBar = 0;
-    //changing of the labels
-    d3.select("#chart_top_employers")
-    .selectAll("svg")
-    .selectAll("text")
-    .attr('x', function(d,i){
-        currentBar++;
-        return currentBar * (barWidth + 7) + (barWidth * 0.5);
-    })
-      */  
 }
 
 function recalcMap(){
