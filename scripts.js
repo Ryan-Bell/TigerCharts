@@ -58,7 +58,7 @@ d3.csv("dataset.csv", function(error,data){
     
     
     //Create the div for the tooltip
-    var div = d3.select("body").append("span")	
+    var div = d3.select("body").append("div")	
         .attr("class", "tooltip")				
         .style("opacity", 0);
     
@@ -169,7 +169,7 @@ d3.csv("dataset.csv", function(error,data){
             .attr('stop-opacity', 1);
         gradient2.append('stop')
             .attr('offset', "100%")
-            .attr('style', 'stop-color:#676767')
+            .attr('style', 'stop-color:#414141')
             .attr('stop-opacity', 1);
 /*
         gradient2.append('stop')
