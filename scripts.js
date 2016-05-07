@@ -480,8 +480,8 @@ d3.csv("dataset.csv", function(error,data){
             .attr("height", 500)
             .style("display", "block")
             .style("margin", "auto")
-            .style("margin-top", "15px")
-            .style("margin-bottom", "15px");
+            .style("padding-top", "15px")
+            .style("padding-bottom", "15px");
         
         var div = d3.select("body").append("div")	
         .attr("class", "tooltip")				

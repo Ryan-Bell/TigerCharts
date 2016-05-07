@@ -257,14 +257,18 @@ i {
 table{
     border-collapse: separate;    
 }
+
+chart_top_employed_majors {
+    padding-top: 25px;
+    padding-bottom: 25px
+}
+
 .employedTable {
     width: 70%;
     border: 2px #ffe1c9 solid;
     box-sizing: border-box;
     border-radius: 8px;
     margin: 0 auto;
-    margin-top: 25px;
-    margin-bottom: 25px;
     border-spacing: 0;
     font-size: 16px;
     line-height: 1.5
