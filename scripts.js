@@ -464,9 +464,7 @@ d3.csv("dataset.csv", function(error,data){
     focus.attr('class', 'graphNode')
         .append("circle")
         .attr("class", "y")
-        .style("fill", "none")
-        .style("stroke", "blue")
-        .attr("r", 4);
+        .attr("r", 8);
         
     svg_trends.append("rect")
         .attr("width",trend_width)
