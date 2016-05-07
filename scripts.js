@@ -366,15 +366,53 @@ d3.csv("dataset.csv", function(error,data){
     }
     console.log(historyObjList);
     
+    var termNameList = [];
+    historyObjList.forEach(function(d){
+        termNameList.push(mapTermToTermName(d.name));
+    });
+    
+    var employerHistoryAllObj = {};
+    var employerHistoryList = [];
+    //Getting data in a historical object
+    data.forEach(function(d){
+        if(employerHistoryAllObj[d.Employer] == null){
+            employerHistoryAllObj[d.Employer] = {};
+            employerHistoryAllObj[d.Employer].name = d.Employer;
+            var termObj = {"name":d.Term,"value":1};
+            employerHistoryAllObj[d.Employer].terms = [];
+            employerHistoryAllObj[d.Employer].terms.push(termObj);
+        } else {
+            var newTerm = true;
+            employerHistoryAllObj[d.Employer].terms.forEach(function(term){
+                if(term.name == d.Term){
+                    term.value++;
+                    newTerm = false;
+                }
+            });
+            if(newTerm){
+                var termObj = {"name":d.Term,"value":1};
+                employerHistoryAllObj[d.Employer].terms = [];
+                employerHistoryAllObj[d.Employer].terms.push(termObj);
+            }
+        }
+    });
+    //Translate employerHistoryAllObj to employerHistoryList
+    for(var key in employerHistoryAllObj){
+        employerHistoryList.push(employerHistoryAllObj[key]);
+    }
+    console.log(employerHistoryList);
+    
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
-        trend_width = 960 - margin.left - margin.right,
+        trend_width = $('#chart_employer_trends').width() / 2,
         trend_height = 500 - margin.top - margin.bottom;
     
-    var trend_x = d3.scale.linear()
-        .range([0, trend_width]);
+    var trend_x = d3.scale.ordinal()
+        .rangeBands([0, trend_width])
+        .domain(termNameList);
 
     var trend_y = d3.scale.linear()
-        .range([trend_height, 0]);
+        .range([trend_height, 0])
+        .domain(d3.extent(historyObjList, function(d) { return d.value; }));
 
     var xAxis = d3.svg.axis()
         .scale(trend_x)
@@ -383,8 +421,9 @@ d3.csv("dataset.csv", function(error,data){
     var yAxis = d3.svg.axis()
         .scale(trend_y)
         .orient("left");
+        
     var trend_line = d3.svg.line()
-        .x(function(d) { return trend_x(d.name); })
+        .x(function(d) { return trend_x(mapTermToTermName(d.name)); })
         .y(function(d) { return trend_y(d.value); });
     
     var svg_trends = d3.select("#chart_employer_trends")
@@ -396,38 +435,81 @@ d3.csv("dataset.csv", function(error,data){
     .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    var num_terms = 0;
-    while(num_terms < historyObjList.length){
-        trend_x.domain(d3.extent(historyObjList, function(d) { return d.name; }));
-        trend_y.domain(d3.extent(historyObjList, function(d) { return d.value; }));
-        
-        svg_trends.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + trend_height + ")")
-            .call(xAxis);
-            
-        svg_trends.append("g")
-            .attr("class", "y axis")
-            .call(yAxis)
-            .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
-            .text("Students (#)");
+    var focus = svg_trends.append("g") 
+        .style("display", "none");
 
-//TODO Fix this part of the code
-        historyObjList[num_terms].employers.forEach(function(employer){
-            svg_trends.append("path")
-                .datum(employer)
-                .attr("class", "line")
-                .attr("d", trend_line); 
-        });
+    svg_trends.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + trend_height + ")")
+        .call(xAxis);
         
-        num_terms++;
-    }   
+    svg_trends.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Students (#)");
+
+    svg_trends.append('svg:path')
+        .attr('d', trend_line(historyObjList))
+        .attr('stroke','blue')
+        .attr('stroke-width',2)
+        .attr('fill','none');
+
+    // append the circle at the intersection 
+    focus.append("circle")
+        .attr("class", "y")
+        .style("fill", "none")
+        .style("stroke", "blue")
+        .attr("r", 4);
+        
+    svg_trends.append("rect")
+        .attr("width",trend_width)
+        .attr("height",trend_height)
+        .style("fill", "none")
+        .style("pointer-events", "all")
+        .on("mouseover",function(){focus.style("display","block");})
+        .on("mouseout",function(){focus.style("display","none");})
+        .on("mousemove",mousemove);
+    
+    function mousemove(){
+		var xPos = d3.mouse(this)[0];
+		var leftEdges = trend_x.range();
+        var totalWidth = trend_x.rangeBand();
+        var j;
+        for(j=0; xPos > (leftEdges[j] + totalWidth); j++){
+            //Increment j until the case fails, do nothing here
+        }
+        var termCode = mapTermNameToTerm(trend_x.domain()[j]);
+        var newX = leftEdges[j];
+        var newY = trend_y(historyObjList[j].value);
+		focus.select("circle.y")
+		    .attr("transform",
+		          "translate(" + newX + "," + newY + ")");
+    }
+    
+    //function to map Term (20138) to Term Name (Fall 2013)
+    function mapTermToTermName(term){
+        var termNameMap = {"8":"Fall","1":"Spring","5":"Summer"};
+        var year = term.substring(0,4);
+        var semCode = term.substring(4);
+        var semester = termNameMap[semCode];
+        return semester + " " + year;
+    }
+    
+    //function to map Term Name (Fall 2013) to Term (20138)
+    function mapTermNameToTerm(termName){
+        var res = termName.split(" ");
+        var name = res[0];
+        var date = res[1];
+        var termMap = {"Fall":"8","Spring":"1","Summer":"5"};
+        return date + termMap[name];
+    }
                              
-    // MAP SCRIPTS
+    //----- MAP SCRIPTS -----
     //creating the map for state ids
     var stateIds = {};
     var Idsstate = {};

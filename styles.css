@@ -113,14 +113,15 @@ svg {
   shape-rendering: crispEdges;
 }
 
-.x.axis path {
-  display: none;
-}
-
 .line {
   fill: none;
   stroke: steelblue;
   stroke-width: 1.5px;
+}
+
+.pointer_rect{
+    fill: none;
+    pointer-events: all;
 }
 
 /*------------- Custom HTML CSS --------------*/
