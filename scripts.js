@@ -466,14 +466,35 @@ d3.csv("dataset.csv", function(error,data){
         .attr("class", "y")
         .attr("r", 8);
         
+    focus.append('svg')
+        .attr("class", "tooltip")
+        .append('rect')
+        .attr("rx",8)
+        .attr("ry",8)
+        .attr("width",120)
+        .attr("height",28);
+    focus.select('svg').append('text')
+        .attr("dy",18)
+        .attr("font-size",12)
+        .attr("font-family","Roboto")
+        .attr("font-weight","bold");
+        
     svg_trends.append("rect")
         .attr("width",trend_width)
         .attr("height",trend_height)
         .style("fill", "none")
         .style("pointer-events", "all")
-        .on("mouseover",function(){focus.style("display","block");})
-        .on("mouseout",function(){focus.style("display","none");})
+        .on("mouseover",trendMouseOver)
+        .on("mouseout",trendMouseOut)
         .on("mousemove",mousemove);
+    
+    function trendMouseOver(){
+        focus.style("display","block");
+    }
+    
+    function trendMouseOut(){
+        focus.style("display","none");       
+    }
     
     function mousemove(){
 		var xPos = d3.mouse(this)[0];
@@ -486,14 +507,21 @@ d3.csv("dataset.csv", function(error,data){
         var termCode = mapTermNameToTerm(trend_x.domain()[j]);
         var newX = leftEdges[j];
         var newY = trend_y(historyObjList[j].value);
+        //Warning, you have entered magic number territory
 		focus.select("circle.y")
-		    .attr("transform",
-		          "translate(" + newX + "," + newY + ")");
+		    .attr("transform","translate(" + newX + "," + newY + ")");
+        focus.select("svg").select("rect")
+            .attr("transform","translate(" + (newX + 20) + "," + (newY - 7) + ")");
+        focus.select("svg").select("text")
+            .text(function(){
+                return trend_x.domain()[j] + ": " + historyObjList[j].value;
+            })
+            .attr("transform","translate(" + (newX + 25) + "," + (newY - 7) + ")");
     }
     
     //function to map Term (20138) to Term Name (Fall 2013)
     function mapTermToTermName(term){
-        var termNameMap = {"8":"Fall","1":"Spring","5":"Summer"};
+        var termNameMap = {"8":"Summer","1":"Fall","5":"Spring"};
         var year = term.substring(0,4);
         var semCode = term.substring(4);
         var semester = termNameMap[semCode];
@@ -505,7 +533,7 @@ d3.csv("dataset.csv", function(error,data){
         var res = termName.split(" ");
         var name = res[0];
         var date = res[1];
-        var termMap = {"Fall":"8","Spring":"1","Summer":"5"};
+        var termMap = {"Summer":"8","Fall":"1","Spring":"5"};
         return date + termMap[name];
     }
                              

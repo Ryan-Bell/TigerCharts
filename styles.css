@@ -23,6 +23,14 @@ div.tooltip {
     pointer-events: none;
 }
 
+svg.tooltip rect{
+    fill: #FF8A65;
+}
+
+svg.tooltip text{
+    fill: white;
+}
+
 .chartTitle {
     fill: white;
     font-family: 'Roboto', sans-serif;
