@@ -112,15 +112,7 @@
                 //doc ready and the similar (older) page load 
             $(document).ready(ready), 
             $(document).on("page:load", ready)
-            
-            //Materialize Jquery ScrollFire
-            var options = [
-                {selector: '#image-test', offset: 500, callback: function() {
-                    Materialize.fadeInImage("#image-test");
-                } }
-            ];
-            Materialize.scrollFire(options); 
-            
+                                  
             //readjust the width of the bars on the bar graph
         </script>
     </head>
@@ -141,8 +133,8 @@
             <h2 class='mobile mob-nav-header' style='font-size: 24px; text-align: left; color: white; padding:0; margin: 0; position: relative; top: -5px; font-weight: 300'>TigerCharts</h2>
             <div id="mobile-nav">
                 <a class='mobile jumpLink' href='#topEmployers'>Top Employers</a>
-                <a class='mobile jumpLink' href='#employmentMap'>Employment Map</a>
                 <a class='mobile jumpLink' href='#chart_top_employed_majors'>Majors</a>
+                <a class='mobile jumpLink' href='#employmentMap'>Employment Map</a>
                 <a class='mobile jumpLink' href='#trends'>Employer Trends</a>
             </div>
         </div>
@@ -169,10 +161,11 @@
         <div class='bg-image' style='background-image: url(./images/code.jpg)'>
             <h1 class="center-vertical">Employent by Major</h1>
         </div>
-        <div class="card-content grey-text text-darken-3" id="chart_top_employed_majors">
-            <div class="help-tip">
+        <div class="help-tip">
                 <p>This list shows the total number of Co-Ops divided by major.</p>
             </div>
+        <div class="card-content grey-text text-darken-3" id="chart_top_employed_majors">
+            
             <div id="chart_top_employed_majors"></div>
         </div>
         

@@ -275,6 +275,12 @@ d3.csv("dataset.csv", function(error,data){
             .attr('class', 'employedTable')
         .append('tbody');
     //add the table title element
+    var table_title = svg_employed.append('tr');
+    table_title.append('th')
+        .text("Academic Plan")
+        
+    table_title.append('th')
+        .text("Number Employed")
     
     var num_majors = 0;
     while (num_majors < majorObjList.length){
