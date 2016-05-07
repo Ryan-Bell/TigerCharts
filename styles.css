@@ -59,24 +59,7 @@ div.tooltip {
 .chartBar:hover {
     fill: url(#grad2);
 }
-.chartBar span {
-	background: #fefefe;
-	border-radius: 3px;
-	left: -8px;
-	display: none;
-	margin: 0;
-	position: relative;
-	text-shadow: rgba(255, 255, 255, 0.8) 0 1px 0;
-	width: 40px;
-	z-index: 20;
-	
-	-webkit-box-shadow: rgba(0, 0, 0, 0.6) 0 1px 4px;
-	box-shadow: rgba(0, 0, 0, 0.6) 0 1px 4px;
-}
-.chartBar:hover span {
-	display: block;
-	margin-top: -25px;
-}
+
 .chartBarHolder{
     display: inline-block;
     padding-left: 7px;

@@ -56,12 +56,12 @@ d3.csv("dataset.csv", function(error,data){
     topEmployersObjList.sort(compare);
     
     
-    /*
+    
     //Create the div for the tooltip
     var div = d3.select("body").append("span")	
         .attr("class", "tooltip")				
         .style("opacity", 0);
-    */
+    
     
     //Loop over the top x number of employers and create their graphs
     var i = 0;
@@ -181,7 +181,7 @@ d3.csv("dataset.csv", function(error,data){
             .attr('style', 'stop-color:#414141')
             .attr('stop-opacity', 1); */
 
-        svg.append('rect')
+        var rect = svg.append('rect')
             .attr('class', 'chartBar')
             .attr('width', barWidth)
             .attr('height', function(d){
@@ -201,7 +201,6 @@ d3.csv("dataset.csv", function(error,data){
             .attr('rx', 3)
             .attr('ry', 3)
             .attr('fill', "url(#grad1)")
-            /*
             .on('mouseover',function(d){
                 div.transition()
                     .duration(100)
@@ -214,10 +213,9 @@ d3.csv("dataset.csv", function(error,data){
                 div.transition()		
                     .duration(500)		
                     .style("opacity", 0);	
-            })*/
-            .append("span")
-            .text(function(d){
-                d.plan + ": " + d.value});
+            })
+                
+            
                     
     //add the bar label text
     var currentBar = -1;
