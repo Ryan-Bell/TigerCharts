@@ -116,10 +116,10 @@
         <div class="nav">
             <!-- NavBar elements for desktops -->
             <a class='desktop jumpLink active' href='#home'>TigerCharts</a> <!-- replace with logo -->
-            <a class='desktop jumpLink' href='#topEmployers'>Top Employers</a>
-            <a class='desktop jumpLink' href='#chart_top_employed_majors_card'>Employment by Major</a>
-            <a class='desktop jumpLink' href='#employmentMap'>Employment Map</a>
-            <a class='desktop jumpLink' href='#trends'>Employer Trends</a>
+            <a class='desktop jumpLink' href='#topEmployersImg'>Top Employers</a>
+            <a class='desktop jumpLink' href='#chart_top_employed_majors_cardImg'>Employment by Major</a>
+            <a class='desktop jumpLink' href='#employmentMapImg'>Employment Map</a>
+            <a class='desktop jumpLink' href='#trendsImg'>Employer Trends</a>
             
             <!-- Collapsed navbar that will show for mobile devices -->
             <!-- Hamburger -->
@@ -127,10 +127,10 @@
             <!-- TigerCharts collapsed text -->
             <h2 class='mobile mob-nav-header' style='font-size: 24px; text-align: left; color: white; padding:0; margin: 0; position: relative; top: -5px; font-weight: 300'>TigerCharts</h2>
             <div id="mobile-nav">
-                <a class='mobile jumpLink' href='#topEmployers'>Top Employers</a>
-                <a class='mobile jumpLink' href='#chart_top_employed_majors_card'>Majors</a>
-                <a class='mobile jumpLink' href='#employmentMap'>Employment Map</a>
-                <a class='mobile jumpLink' href='#trends'>Employer Trends</a>
+                <a class='mobile jumpLink' href='#topEmployersImg'>Top Employers</a>
+                <a class='mobile jumpLink' href='#chart_top_employed_majors_cardImg'>Majors</a>
+                <a class='mobile jumpLink' href='#employmentMapImg'>Employment Map</a>
+                <a class='mobile jumpLink' href='#trendsImg'>Employer Trends</a>
             </div>
         </div>
         <!-- Intro Screen Fill with logo and background image -->
@@ -142,7 +142,7 @@
                 <p><em>This is a work in progress and is not yet complete</em></p>
             </div>
         </div>    
-        <div class='blue-fill'></div>
+        <div class='blue-fill' id="topEmployersImg"></div>
         <div class='bg-image' style='background-image: url(./images/companies.jpg)'>
             <h1 class="center-vertical">Top Employers</h1>
         </div>
@@ -152,7 +152,7 @@
         <div class="card-content grey-text text-darken-3" id="topEmployers">
             <div id="chart_top_employers"></div>
         </div>
-        <div class='blue-fill'></div>
+        <div class='blue-fill' id="chart_top_employed_majors_cardImg"></div>
         <div class='bg-image' style='background-image: url(./images/code.jpg)'>
             <h1 class="center-vertical">Employent by Major</h1>
         </div>
@@ -163,7 +163,7 @@
             <div id="chart_top_employed_majors"></div>
         </div>
         
-        <div class='blue-fill'></div>
+        <div class='blue-fill' id="employmentMapImg"></div>
         <div class='bg-image' style='background-image: url(./images/travel.png)'>
             <h1 class="center-vertical">Employment Map</h1>
         </div>
@@ -173,13 +173,13 @@
         <div class="card-content grey-text text-darken-3" id="employmentMap">
             <div id="map_employment"></div>
         </div>
-        <div class='blue-fill'></div>
+        <div class='blue-fill' id="trendsImg"></div>
         <div class='bg-image' style='background-image: url(./images/trends.jpg)'>
             <h1 class="center-vertical">Employer Trends</h1>
         </div>
         <div class="card-content grey-text text-darken-3" id="trends">
             <div class="help-tip">
-	            <p>This is a chart. ************FILL*******************</p>
+	            <p>This chart shows the total employment trends per term.</p>
             </div>
             <div id="chart_employer_trends"></div>
         </div>
