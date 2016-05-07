@@ -193,7 +193,9 @@ h1 {
 }
 h2 {
     font-size: 36px;
-    text-transform: uppercase
+    text-transform: uppercase;
+    margin: 0;
+    padding: 1.78rem 0 1.424rem 0;
 }
 h3 {
     font-size: 24px;
@@ -258,7 +260,7 @@ table{
     border-collapse: separate;    
 }
 
-chart_top_employed_majors {
+#chart_top_employed_majors_card {
     padding-top: 25px;
     padding-bottom: 25px
 }
