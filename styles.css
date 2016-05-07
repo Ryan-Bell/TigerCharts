@@ -130,6 +130,37 @@ svg {
     min-height: 500px;
     background-color: white
 }
+.links{
+    width:100%;
+    text-align: center;
+}
+.links a{
+    color: white;
+    display: inline-block;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 10px 10px;
+    margin: 20px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.07em;
+    -webkit-transition: background-color 200ms ease;
+    -moz-transition: background-color 200ms ease;
+    -o-transition: background-color 200ms ease;
+    transition: background-color 200ms ease
+}
+.links a.active {
+    background: white;
+    color: #f58625
+}
+.links a.active:hover {
+    background: white;
+    color: #f58625
+}
+.links a:hover {
+    background: #f4780d;
+    color: white
+}
 .nav {
     background: #f58625;
     width: 100%;
@@ -314,6 +345,7 @@ table{
     width: 70%;
     margin: 0 auto;
 }
+
 @media (max-width: 1000px) {
     #topEmployers{
         width: 100%;
