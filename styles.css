@@ -54,7 +54,6 @@ div.tooltip {
     height: 300px;
 }
 
-
 .chartBar:hover {
     fill: url(#grad2);
 }
