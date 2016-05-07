@@ -434,10 +434,7 @@ d3.csv("dataset.csv", function(error,data){
         .style("margin", "auto")
     .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    var focus = svg_trends.append("g") 
-        .style("display", "none");
-
+        
     svg_trends.append("g")
         .attr("class", "axis")
         .attr("transform", "translate(" + -1 * (trend_width/2)/historyObjList.length +"," + trend_height + ")")
@@ -459,6 +456,9 @@ d3.csv("dataset.csv", function(error,data){
         .attr('stroke','blue')
         .attr('stroke-width',2)
         .attr('fill','none');
+        
+    var focus = svg_trends.append("g") 
+        .style("display", "none");
         
     // append the circle at the intersection 
     focus.attr('class', 'graphNode')
@@ -511,12 +511,12 @@ d3.csv("dataset.csv", function(error,data){
 		focus.select("circle.y")
 		    .attr("transform","translate(" + newX + "," + newY + ")");
         focus.select("svg").select("rect")
-            .attr("transform","translate(" + (newX + 20) + "," + (newY - 7) + ")");
+            .attr("transform","translate(" + (newX + 20) + "," + (newY) + ")");
         focus.select("svg").select("text")
             .text(function(){
                 return trend_x.domain()[j] + ": " + historyObjList[j].value;
             })
-            .attr("transform","translate(" + (newX + 25) + "," + (newY - 7) + ")");
+            .attr("transform","translate(" + (newX + 25) + "," + (newY) + ")");
     }
     
     //function to map Term (20138) to Term Name (Fall 2013)
