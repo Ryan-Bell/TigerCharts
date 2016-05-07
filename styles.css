@@ -110,18 +110,22 @@ svg {
 .axis line {
   fill: none;
   stroke: #000;
-  shape-rendering: crispEdges;
 }
 
 .line {
   fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
+  stroke: #f36e21 ;
+  stroke-width: 4px;
 }
 
 .pointer_rect{
     fill: none;
     pointer-events: all;
+}
+
+.graphNode circle{
+    fill: #f36e21;
+    stroke: #f36e21;
 }
 
 /*------------- Custom HTML CSS --------------*/

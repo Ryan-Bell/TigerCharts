@@ -455,12 +455,14 @@ d3.csv("dataset.csv", function(error,data){
 
     svg_trends.append('svg:path')
         .attr('d', trend_line(historyObjList))
+        .attr('class', 'line')
         .attr('stroke','blue')
         .attr('stroke-width',2)
         .attr('fill','none');
-
+        
     // append the circle at the intersection 
-    focus.append("circle")
+    focus.attr('class', 'graphNode')
+        .append("circle")
         .attr("class", "y")
         .style("fill", "none")
         .style("stroke", "blue")
