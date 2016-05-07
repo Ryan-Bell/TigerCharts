@@ -439,12 +439,12 @@ d3.csv("dataset.csv", function(error,data){
         .style("display", "none");
 
     svg_trends.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + trend_height + ")")
+        .attr("class", "axis")
+        .attr("transform", "translate(" + -1 * (trend_width/2)/historyObjList.length +"," + trend_height + ")")
         .call(xAxis);
         
     svg_trends.append("g")
-        .attr("class", "y axis")
+        .attr("class", "axis")
         .call(yAxis)
         .append("text")
         .attr("transform", "rotate(-90)")
