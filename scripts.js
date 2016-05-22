@@ -2,25 +2,36 @@
 function createDataSetObject(data) {
     //the dataset object to be returned
     var dataObj = {};
-    
+    dataObj["PlanCounts"] = {};
+    dataObj["Employers"] = {};
     //iterate over each line in the csv
     data.forEach(function(datum){
         //add data by company first then plan
         //start the employer sub object if it doesn't already exist
-        if (dataObj[datum.Employer] == null){
-            dataObj[datum.Employer] = {};
-            dataObj[datum.Employer].name = datum.Employer;
-            dataObj[datum.Employer].value = 0;
+        if (dataObj["Employers"][datum.Employer] == null){
+            dataObj["Employers"][datum.Employer] = {};
+            dataObj["Employers"][datum.Employer].name = datum.Employer;
+            dataObj["Employers"][datum.Employer].value = 0;
         }
         //start the plan attribute if it doesn't already exist
-        if (dataObj[datum.Employer][datum.Plan] == null){
-            dataObj[datum.Employer][datum.Plan] = 0;
+        if (dataObj["Employers"][datum.Employer][datum.Plan] == null){
+            dataObj["Employers"][datum.Employer][datum.Plan] = 0;
         }
         //increment the count for the plan and the employer
-        dataObj[datum.Employer][datum.Plan]++;
-        dataObj[datum.Employer].value++;
+        dataObj["Employers"][datum.Employer][datum.Plan]++;
+        dataObj["Employers"][datum.Employer].value++;
+        
+        //update counts for overall major counts
+        if (dataObj["PlanCounts"][datum.Plan] == null){
+            var majorObj = {};
+            majorObj.name = datum.Plan;
+            majorObj.value = 1;
+            dataObj["PlanCounts"][datum.Plan] = majorObj;    
+        } else {
+            dataObj["PlanCounts"][datum.Plan].value++;
+        }
     });
-
+    
     return dataObj;    
 }
 
@@ -50,8 +61,8 @@ function createTopEmployersList(datasetObj){
     var topEmployersObjList = [];
 
     //Adds all employers in the datasetObj to the topEmployersObjList
-    for(var key in datasetObj){
-        topEmployersObjList.push(datasetObj[key]);
+    for(var key in datasetObj["Employers"]){
+        topEmployersObjList.push(datasetObj["Employers"][key]);
     }
     
     //sort list by employment numbers
@@ -93,6 +104,7 @@ function drawTopEmployers(topEmployersObjList, numEmployers){
                 planArray.push(rowObj);
             }
         }
+        
         //Sort the Array of plan objects greatest to least
         planArray.sort(greatToLeastOnValue);
         
@@ -205,112 +217,93 @@ function drawTopEmployers(topEmployersObjList, numEmployers){
                     .duration(500)		
                     .style("opacity", 0);	
             })
+
+
+        //add the bar label text
+        var currentBar = -1;
+        d3.select('#chart_top_employers')
+            .append('svg')
+            .attr('width',width)
+            .attr('height', textHeight)
+            .selectAll('text').data(planArray)
+            .enter().append('text')
+                .attr('x', function(d,i){
+                    //update the current bar index
+                    currentBar++;
+                    //currentBar * (barWidth + 7) moves the text to the beginning of each bar
+                        //7 is the padding for the bars
+                    //(barWidth * .5) moves the ttext to the center of the bar
+                    return currentBar * (barWidth + 7) + (barWidth * 0.5);
+                })
+                .attr('y', 10)
+                .text(function(d){
+                    return d.plan;
+                })
+                .attr('class','chartSubLabel')
+                //anchor the text by the center instead of left to account for variable length
+                .attr('text-anchor', 'middle');
                 
-            
-                    
-    //add the bar label text
-    var currentBar = -1;
-    d3.select('#chart_top_employers')
-        .append('svg')
-        .attr('width',width)
-        .attr('height', textHeight)
-        .selectAll('text').data(planArray)
-        .enter().append('text')
-            .attr('x', function(d,i){
-                //update the current bar index
-                currentBar++;
-                //currentBar * (barWidth + 7) moves the text to the beginning of each bar
-                    //7 is the padding for the bars
-                //(barWidth * .5) moves the ttext to the center of the bar
-                return currentBar * (barWidth + 7) + (barWidth * 0.5);
-            })
-            .attr('y', 10)
-            .text(function(d){
-                return d.plan;
-            })
-            .attr('class','chartSubLabel')
-            //anchor the text by the center instead of left to account for variable length
-            .attr('text-anchor', 'middle');
-            
-        currentEmp++;
+            currentEmp++;
     }
-
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
 
 //----- Top Employed Majors -----
+function createTopMajorsList(datasetObj){
+    //List of top majors
+    var majorObjList = [];
 
-//The List of all Major Objects
-//majorObj: name (Name of the plan), value (Number of occurences all time)
-var majorObjList = [];
-//Object which attribute's are all of the majorObj
-var allMajorObj = {};
-//Populate allMajorObj
-data.forEach(function(d){
-    if (allMajorObj[d.Plan] == null){
-        var majorObj = {};
-        majorObj.name = d.Plan;
-        majorObj.value = 1;
-        allMajorObj[d.Plan] = majorObj;
-    } else {
-        allMajorObj[d.Plan].value++;
+    //Translate datasetObj to majorObjList
+    for(var key in datasetObj["PlanCounts"]){
+        majorObjList.push(datasetObj["PlanCounts"][key]);
     }
-});
-//Translate allMajorObj to majorObjList
-for(var key in allMajorObj){
-    majorObjList.push(allMajorObj[key]);
-}
-majorObjList.sort(compare);
-
-//Contruct the table to hold the info
-var svg_employed = d3.select('#chart_top_employed_majors')
-    .append('table')
-        .attr('border', '0')
-        .attr('class', 'employedTable')
-    .append('tbody');
-//add the table title element
-var table_title = svg_employed.append('tr');
-table_title.append('th')
-    .text("Academic Plan")
     
-table_title.append('th')
-    .text("Number Employed")
-
-var num_majors = 0;
-while (num_majors < majorObjList.length){
-
-    //add the table data
-    var tableRow = svg_employed.append('tr');
-        //add the major
-        tableRow.append('td')
-            .text(function(d){
-                return "#" + (num_majors + 1) + ") " + majorObjList[num_majors].name + ": ";
-            });
-        //add the employment number
-        tableRow.append('td')
-            .text(function(d){
-                return majorObjList[num_majors].value;
-            });
-
-    num_majors++;
+    //sort the list
+    majorObjList.sort(greatToLeastOnValue);
+    
+    return majorObjList;
 }
 
+
+function drawTopMajors(majorObjList){
+    //clear anything in the div already
+    d3.select('#chart_top_employed_majors').html("");
+
+    //Contruct the table to hold the info
+    var svg_employed = d3.select('#chart_top_employed_majors')
+        .append('table')
+            .attr('border', '0')
+            .attr('class', 'employedTable')
+        .append('tbody');
+        
+    //add the table title element
+    var table_title = svg_employed.append('tr');
+    table_title.append('th')
+        .text("Academic Plan")
+        
+    table_title.append('th')
+        .text("Number Employed")
+
+    var num_majors = 0;
+    while (num_majors < majorObjList.length){
+
+        //add the table data
+        var tableRow = svg_employed.append('tr');
+            //add the major
+            tableRow.append('td')
+                .text(function(d){
+                    return "#" + (num_majors + 1) + ") " + majorObjList[num_majors].name + ": ";
+                });
+            //add the employment number
+            tableRow.append('td')
+                .text(function(d){
+                    return majorObjList[num_majors].value;
+                });
+
+        num_majors++;
+    }
+}
+/*
 //----- Employer Trends -----
 
 var historyObjList = [];

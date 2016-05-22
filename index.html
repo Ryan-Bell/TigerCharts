@@ -41,12 +41,14 @@
         <!-- Import Roboto Font -->
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <script>
-            var topEmployerObjList;
+            var topEmployerObjList, topMajorObjList;
             d3.csv("dataset.csv", function(error, data){
                 if (error) throw error;
                 var datasetObj = createDataSetObject(data);
                 topEmployerObjList = createTopEmployersList(datasetObj);
+                topMajorObjList = createTopMajorsList(datasetObj);
                 drawTopEmployers(topEmployerObjList, 5);
+                drawTopMajors(topMajorObjList);
             })
 
             //height of the nav bar
@@ -161,14 +163,14 @@
         <div class='blue-fill' id="chart_top_employed_majors_cardImg"></div>
         <div class='bg-image' style='background-image: url(./images/code.jpg)'>
             <h1 class="center-vertical">Employent by Major</h1>
-        </div>
+        </div>-->
         <div class="help-tip">
                 <p>This list shows the total number of Co-Ops divided by major.</p>
-            </div>
+        </div>
         <div class="card-content grey-text text-darken-3" id="chart_top_employed_majors_card">
             <div id="chart_top_employed_majors"></div>
         </div>
-        
+        <!--
         <div class='blue-fill' id="employmentMapImg"></div>
         <div class='bg-image' style='background-image: url(./images/travel.png)'>
             <h1 class="center-vertical">Employment Map</h1>
