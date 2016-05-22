@@ -11,7 +11,7 @@
         <meta content='width=device-width, initial-scale=1' name='viewport'>
         <!-- Open Graph metadata enables a web page to be an object in a social graph (won't be used for a long while) -->
         <meta content='TigerCharts' property='og:title'>
-        <meta content='https://tigercharts.rit.ede' property='og:url'>
+        <meta content='https://tigercharts.rit.edu' property='og:url'>
         <meta content="An aggregation of RIT coop / internship statistics over the past few years provided by the Office of Career Services" property='og:description'>
             <!-- an og image could be added here -->
         
@@ -41,6 +41,8 @@
         <!-- Import Roboto Font -->
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <script>
+            datasetObj = createDataSetObject();
+            
             //height of the nav bar
             var navHeight = 0;
             //define the ready function which will be called when the page is ready
@@ -107,8 +109,6 @@
                 //doc ready and the similar (older) page load 
             $(document).ready(ready), 
             $(document).on("page:load", ready)
-                                  
-            //readjust the width of the bars on the bar graph
         </script>
     </head>
     <body>
