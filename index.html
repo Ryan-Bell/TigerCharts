@@ -41,8 +41,14 @@
         <!-- Import Roboto Font -->
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <script>
-            datasetObj = createDataSetObject();
-            
+            var topEmployerObjList;
+            d3.csv("dataset.csv", function(error, data){
+                if (error) throw error;
+                var datasetObj = createDataSetObject(data);
+                topEmployerObjList = createTopEmployersList(datasetObj);
+                drawTopEmployers(topEmployerObjList, 5);
+            })
+
             //height of the nav bar
             var navHeight = 0;
             //define the ready function which will be called when the page is ready
@@ -62,9 +68,9 @@
                         $(this).css("padding-top", amount)
                     });
                     //recalc the various items created by d3
-                    recalcTopEmployers();
-                    recalcMap();
-                    recalcTrends();
+                    //recalcTopEmployers();
+                    //recalcMap();
+                    //recalcTrends();
                 }
                 //click event for the mobile hamburger button
                 $("#hamburger-menu").click(function() {
@@ -136,7 +142,7 @@
         <!-- Intro Screen Fill with logo and background image -->
         <div class='page background' id='home'>
             <div class='center-vertical plus-nav center'>
-                <img id="logo" src="./images/Logo.png" alt="TigerCharts Logo" />
+                <!--<img id="logo" src="./images/Logo.png" alt="TigerCharts Logo" />-->
                 <h3 style='text-align: center; color: white; position: relative; top: 48px;'>Welcome to the Dev Build</h3>
                 <br>
                 <p><em>This is a work in progress and is not yet complete</em></p>
@@ -151,7 +157,7 @@
             </div>
         <div class="card-content grey-text text-darken-3" id="topEmployers">
             <div id="chart_top_employers"></div>
-        </div>
+        </div><!--
         <div class='blue-fill' id="chart_top_employed_majors_cardImg"></div>
         <div class='bg-image' style='background-image: url(./images/code.jpg)'>
             <h1 class="center-vertical">Employent by Major</h1>
@@ -216,7 +222,7 @@
                 <a class="grey-text text-lighten-3" target="_blank" href="http://materializecss.com/">Materialize</a>
                 <a class="grey-text text-lighten-3" target="_blank" href="https://logomakr.com/">Logomakr</a>
             </div>
-          </div>
+          </div>-->
           <div class="footer-copyright">
             <div class="container center-align">
                 © 2016 Copyright Ryan Bell - Dan Fisher - Will Frey

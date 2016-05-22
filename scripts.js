@@ -1,3 +1,40 @@
+//reads data csv and creates object based on it
+function createDataSetObject(data) {
+    //the dataset object to be returned
+    var dataObj = {};
+    
+    //iterate over each line in the csv
+    data.forEach(function(datum){
+        //add data by company first then plan
+        //start the employer sub object if it doesn't already exist
+        if (dataObj[datum.Employer] == null){
+            dataObj[datum.Employer] = {};
+            dataObj[datum.Employer].name = datum.Employer;
+            dataObj[datum.Employer].value = 0;
+        }
+        //start the plan attribute if it doesn't already exist
+        if (dataObj[datum.Employer][datum.Plan] == null){
+            dataObj[datum.Employer][datum.Plan] = 0;
+        }
+        //increment the count for the plan and the employer
+        dataObj[datum.Employer][datum.Plan]++;
+        dataObj[datum.Employer].value++;
+    });
+
+    return dataObj;    
+}
+
+//sort functions
+//sort from greatest to least employment count
+function greatToLeastOnValue(left, right){
+    if (left.value < right.value)
+        return 1;
+    else if (left.value > right.value)
+        return -1;
+    else
+        return 0;
+}
+
 var width = "100%",
     textHeight = 50,
     titleHeight = 50,
@@ -6,231 +43,199 @@ var width = "100%",
     padding = 10,
     small_padding = 5,
     xsmall_padding = 2,
-    NUMBER_TOP_EMPLOYERS_SHOWN = 5,
     BAR_PADDING = 8;
+ 
+function createTopEmployersList(datasetObj){
+    //List of all Top Employers
+    var topEmployersObjList = [];
+
+    //Adds all employers in the datasetObj to the topEmployersObjList
+    for(var key in datasetObj){
+        topEmployersObjList.push(datasetObj[key]);
+    }
     
-var datasetObj;
+    //sort list by employment numbers
+    topEmployersObjList.sort(greatToLeastOnValue);
 
-//List of all Top Employers
-var topEmployersObjList = [];
-
-function createDataSetObject() {
-    //the dataset object to be returned
-    var dataObj = {};
-        
-    d3.csv("dataset.csv", function(error, data){
-        if (error) throw error;        
-        //iterate over each line in the csv
-        data.forEach(function(datum){
-            //add data by company first then plan
-            
-            //start the employer sub object if it doesn't already exist
-            if (dataObj[datum.Employer] == null){
-                dataObj[datum.Employer] = {};
-                dataObj[datum.Employer].name = datum.Employer;
-                dataObj[datum.Employer].value = 0;
-            }
-            //start the plan attribute if it doesn't already exist
-            if (dataObj[datum.Employer][datum.Plan] == null){
-                dataObj[datum.Employer][datum.Plan] = 0;
-            }
-            //increment the count for the plan and the employer
-            dataObj[datum.Employer][datum.Plan]++;
-            dataObj[datum.Employer].value++;
-        });
-            
-    })
-    return dataObj;
+    return topEmployersObjList;
 }
-
 
 //----- Top Employers -----
-var tableObj = createDataSetObject();
-
-
-//A simple compare function to sort from greatest to least
-function compare (a, b){
-    if (a.value < b.value)
-        return 1;
-    else if (a.value > b.value)
-        return -1;
-    else
-        return 0;
-}
-
-//Adds all employers in the tableObj to the topEmployersObjList and sorts it
-for(var key in tableObj){
-    topEmployersObjList.push(tableObj[key]);
-}
-topEmployersObjList.sort(compare);
-
-
-//Create the div for the tooltip
-var div = d3.select("body").append("div")	
-    .attr("class", "tooltip")				
-    .style("opacity", 0);
-
-
-//Loop over the top x number of employers and create their graphs
-var i = 0;
-while(i < NUMBER_TOP_EMPLOYERS_SHOWN){
-    var isFirstColumn = true;
-    var barScale;
+function drawTopEmployers(topEmployersObjList, numEmployers){
+    //clear out the existing html in the div
+    d3.select('#chart_top_employers').html("");
     
-    //The data array that will be passed to d3 to iterate over easily
-    var tempArray = [];
-    //Iterate over all elements in the i'th topEmployersObj
-    //The object has a 'plan', a 'value', and a number of plans such as 'SOFTENG-BS'
-    for(var plan in topEmployersObjList[i]){
-        if (plan != "value" && plan != "name"){
-            //The object that will have a 'plan' and a 'value'
-            var rowObj = {};
-            rowObj.plan = plan;
-            rowObj.value = topEmployersObjList[i][plan];
-            //Add this object to the Array of plan objects
-            tempArray.push(rowObj);
-        }
-    }
-    //Sort the Array of plan objects greatest to least
-    tempArray.sort(compare);
-    
-    //adding the company chart title
-    var svg = d3.select('#chart_top_employers')
-        svg.append('h2')
-        .text(function(d){
-            return topEmployersObjList[i].name;
-        });
-        svg.append('h4')
-        .text(function(d){
-            return "Total: " + topEmployersObjList[i].value;
-        });
+    //Create the div for the tooltip
+    var div = d3.select("body").append("div")	
+        .attr("class", "tooltip")				
+        .style("opacity", 0);
 
-    //chart backdrop                    
-    var svg_bar_chart = d3.select('#chart_top_employers')
-        .append('div')
-        .attr('class', 'chartBackground');
-        
 
+    //Loop over the top x number of employers and create their graphs
+    var currentEmp = 0;
+    while(currentEmp < numEmployers){
+        var isFirstColumn = true;
+        var barScale;
         
-    //calculate how wide the bars should be for this graph based on the 
-    //number of bars in the graph and the width of the graph
-    var numBars = tempArray.length;
-    var chartWidth = $('.chartBackground').width();
-    barWidth =  chartWidth / numBars - BAR_PADDING; 
+        //The plans array that will be passed to d3 to 
+        //create the plan bars for the current employers
+        var planArray = [];
         
-    //adding the actual bars
-    var svg = svg_bar_chart.selectAll('div').data(tempArray)
-        .enter().append('div')
-                .attr('class', 'chartBarHolder')
-            .append('svg')
-                .attr('width', barWidth)
-                //set the hieght to be the hieght of the graph
-                .attr('height', function(d){
-                    return $('.chartBackground').height();
-                });
-    
-    //apply the first gradient def to the svg elem                    
-    var gradient = svg
-        .append('defs')
-        .append('linearGradient')
-            .attr('id', 'grad1')
-            .attr('x1', '0%')
-            .attr('y1', '0%')
-            .attr('x2', '100%')
-            .attr('y2', '0%');
-    
-    //define the gradient colors and percentages
-    gradient.append('stop')
-        .attr('offset', "0%")
-        .attr('style', 'stop-color:#eea151')
-        .attr('stop-opacity', 1);
-
-    gradient.append('stop')
-        .attr('offset', "100%")
-        .attr('style', 'stop-color:#e06818')
-        .attr('stop-opacity', 1);
-        
-    //apply the 2nd gradient def to the svg
-    var gradient2 = svg
-        .append('defs')
-        .append('linearGradient')
-            .attr('id', 'grad2')
-            .attr('x1', '0%')
-            .attr('y1', '0%')
-            .attr('x2', '100%')
-            .attr('y2', '0%');
-            
-    //define the gradient colors and percentages
-    gradient2.append('stop')
-        .attr('offset', "0%")
-        .attr('style', 'stop-color:#747474')
-        .attr('stop-opacity', 1);
-    gradient2.append('stop')
-        .attr('offset', "100%")
-        .attr('style', 'stop-color:#414141')
-        .attr('stop-opacity', 1);
-
-    var rect = svg.append('rect')
-        .attr('class', 'chartBar')
-        .attr('width', barWidth)
-        .attr('height', function(d){
-            if (isFirstColumn){
-                isFirstColumn = false;
-                //use the height of the graph to determine scale but give padding
-                barScale = ($('.chartBackground').height() - 10) / d.value;
-            }
-            return d.value * barScale;
-        })
-        .attr('y', function(d){
-            //chart height - bar height 
-            var chartHeight = $('.chartBackground').height();
-            return chartHeight - d.value * barScale;
-        })
-        //round the corners a bit
-        .attr('rx', 3)
-        .attr('ry', 3)
-        .attr('fill', "url(#grad1)")
-        .on('mouseover',function(d){
-            div.transition()
-                .duration(100)
-                .style('opacity',.9);
-            div.html(d.plan + ": " + d.value + "<br/>")
-                .style('left', (d3.event.pageX) + "px")
-                .style('top', (d3.event.pageY - 28) + "px");
-        })
-        .on("mouseout", function(d) {		
-            div.transition()		
-                .duration(500)		
-                .style("opacity", 0);	
-        })
-            
-        
+        //Iterate over all elements in the i'th topEmployersObj
+        for(var plan in topEmployersObjList[currentEmp]){
+            //The object has a 'plan', a 'value', and a number of plans such as 'SOFTENG-BS'
+            if (plan != "value" && plan != "name"){
+                var rowObj = {};
+                rowObj.plan = plan;
+                rowObj.value = topEmployersObjList[currentEmp][plan];
                 
-//add the bar label text
-var currentBar = -1;
-d3.select('#chart_top_employers')
-    .append('svg')
-    .attr('width',width)
-    .attr('height', textHeight)
-    .selectAll('text').data(tempArray)
-    .enter().append('text')
-        .attr('x', function(d,i){
-            //update the current bar index
-            currentBar++;
-            //currentBar * (barWidth + 7) moves the text to the beginning of each bar
-                //7 is the padding for the bars
-            //(barWidth * .5) moves the ttext to the center of the bar
-            return currentBar * (barWidth + 7) + (barWidth * 0.5);
-        })
-        .attr('y', 10)
-        .text(function(d){
-            return d.plan;
-        })
-        .attr('class','chartSubLabel')
-        //anchor the text by the center instead of left to account for variable length
-        .attr('text-anchor', 'middle');
+                //Add this object to the Array of plan objects
+                planArray.push(rowObj);
+            }
+        }
+        //Sort the Array of plan objects greatest to least
+        planArray.sort(greatToLeastOnValue);
         
-    i++;
+        //adding the company chart title
+        var svg = d3.select('#chart_top_employers')
+            svg.append('h2')
+            .text(function(d){
+                return topEmployersObjList[currentEmp].name;
+            });
+            svg.append('h4')
+            .text(function(d){
+                return "Total: " + topEmployersObjList[currentEmp].value;
+            });
+
+        //chart backdrop                    
+        var svg_bar_chart = d3.select('#chart_top_employers')
+            .append('div')
+            .attr('class', 'chartBackground');
+            
+
+            
+        //calculate how wide the bars should be for this graph based on the 
+        //number of bars in the graph and the width of the graph
+        var numBars = planArray.length;
+        var chartWidth = $('.chartBackground').width(),
+        barWidth =  chartWidth / numBars - BAR_PADDING; 
+            
+        //adding the actual bars
+        var svg = svg_bar_chart.selectAll('div').data(planArray)
+            .enter().append('div')
+                    .attr('class', 'chartBarHolder')
+                .append('svg')
+                    .attr('width', barWidth)
+                    //set the hieght to be the hieght of the graph
+                    .attr('height', function(d){
+                        return $('.chartBackground').height();
+                    });
+        
+        //apply the first gradient def to the svg elem                    
+        var gradient = svg
+            .append('defs')
+            .append('linearGradient')
+                .attr('id', 'grad1')
+                .attr('x1', '0%')
+                .attr('y1', '0%')
+                .attr('x2', '100%')
+                .attr('y2', '0%');
+
+        //define the gradient colors and percentages
+        gradient.append('stop')
+            .attr('offset', "0%")
+            .attr('style', 'stop-color:#eea151')
+            .attr('stop-opacity', 1);
+
+        gradient.append('stop')
+            .attr('offset', "100%")
+            .attr('style', 'stop-color:#e06818')
+            .attr('stop-opacity', 1);
+            
+        //apply the 2nd gradient def to the svg
+        var gradient2 = svg
+            .append('defs')
+            .append('linearGradient')
+                .attr('id', 'grad2')
+                .attr('x1', '0%')
+                .attr('y1', '0%')
+                .attr('x2', '100%')
+                .attr('y2', '0%');
+                
+        //define the gradient colors and percentages
+        gradient2.append('stop')
+            .attr('offset', "0%")
+            .attr('style', 'stop-color:#747474')
+            .attr('stop-opacity', 1);
+        gradient2.append('stop')
+            .attr('offset', "100%")
+            .attr('style', 'stop-color:#414141')
+            .attr('stop-opacity', 1);
+
+        var rect = svg.append('rect')
+            .attr('class', 'chartBar')
+            .attr('width', barWidth)
+            .attr('height', function(d){
+                if (isFirstColumn){
+                    isFirstColumn = false;
+                    //use the height of the graph to determine scale but give padding
+                    barScale = ($('.chartBackground').height() - 10) / d.value;
+                }
+                return d.value * barScale;
+            })
+            .attr('y', function(d){
+                //chart height - bar height 
+                var chartHeight = $('.chartBackground').height();
+                return chartHeight - d.value * barScale;
+            })
+            //round the corners a bit
+            .attr('rx', 3)
+            .attr('ry', 3)
+            .attr('fill', "url(#grad1)")
+            .on('mouseover',function(d){
+                div.transition()
+                    .duration(100)
+                    .style('opacity',.9);
+                div.html(d.plan + ": " + d.value + "<br/>")
+                    .style('left', (d3.event.pageX) + "px")
+                    .style('top', (d3.event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(d) {		
+                div.transition()		
+                    .duration(500)		
+                    .style("opacity", 0);	
+            })
+                
+            
+                    
+    //add the bar label text
+    var currentBar = -1;
+    d3.select('#chart_top_employers')
+        .append('svg')
+        .attr('width',width)
+        .attr('height', textHeight)
+        .selectAll('text').data(planArray)
+        .enter().append('text')
+            .attr('x', function(d,i){
+                //update the current bar index
+                currentBar++;
+                //currentBar * (barWidth + 7) moves the text to the beginning of each bar
+                    //7 is the padding for the bars
+                //(barWidth * .5) moves the ttext to the center of the bar
+                return currentBar * (barWidth + 7) + (barWidth * 0.5);
+            })
+            .attr('y', 10)
+            .text(function(d){
+                return d.plan;
+            })
+            .attr('class','chartSubLabel')
+            //anchor the text by the center instead of left to account for variable length
+            .attr('text-anchor', 'middle');
+            
+        currentEmp++;
+    }
+
+
 }
 
 
@@ -247,10 +252,7 @@ d3.select('#chart_top_employers')
 
 
 
-
-
-
-
+/*
 
 //----- Top Employed Majors -----
 
@@ -709,4 +711,4 @@ function recalcMap(){
 
 function recalcTrends(){
     
-}
+}*/
