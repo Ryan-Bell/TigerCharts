@@ -3,115 +3,48 @@
     <head>
         <title>TigerCharts</title>
         <meta charset="utf-8">
-        <!-- Keywords for search engine optimization -->
-        <meta content='Coop, co-op, companies, internships, students, statistics, rit, rochester, institute, technology, ' name='keywords'>
-        <!-- Description -->
-        <meta content="An aggregation of RIT coop / internship statistics over the past few years provided by the Office of Career Services" name='description'>
+        <meta name='keywords' content='Coop, co-op, companies, internships, students, statistics, rit, rochester, institute, technology, '>
+        <meta name='description' content="An aggregation of RIT coop / internship statistics over the past few years provided by the Office of Career Services">
         <!-- Inform browser that the page is optimized for mobile -->
         <meta content='width=device-width, initial-scale=1' name='viewport'>
-        <!-- Open Graph metadata enables a web page to be an object in a social graph (won't be used for a long while) -->
-        <meta content='TigerCharts' property='og:title'>
-        <meta content='https://tigercharts.rit.edu' property='og:url'>
-        <meta content="An aggregation of RIT coop / internship statistics over the past few years provided by the Office of Career Services" property='og:description'>
-            <!-- an og image could be added here -->
+        <!-- Open Graph metadata enables a web page to be an object in a social graph-->
+        <meta property='og:title' content='TigerCharts'>
+        <meta property='og:description' content="An aggregation of RIT coop / internship statistics over the past few years provided by the Office of Career Services">
         
-        <!-- favicon -->
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
         <link rel="icon" href="images/favicon.ico" type="image/x-icon">
         
-        <!--Import jQuery before materialize.js-->
+        <!-- JQuery -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         
-        <!-- Compiled and minified CSS -->
+        <!-- CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
         <link rel="stylesheet" href="styles.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-        
-        <!-- D3 library -->
-        <script src="//d3js.org/d3.v3.min.js"></script>
-        <script src="//d3js.org/queue.v1.min.js"></script>
-        <script src="//d3js.org/topojson.v1.min.js"></script>
         
         <!-- Custom js -->
         <script src="scripts.js"></script>
         
-        <!-- Import Roboto Font -->
+        <!-- Roboto Font -->
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <script>
-            var topEmployerObjList, topMajorObjList;
-            d3.csv("dataset.csv", function(error, data){
-                if (error) throw error;
-                var datasetObj = createDataSetObject(data);
-                topEmployerObjList = createTopEmployersList(datasetObj);
-                topMajorObjList = createTopMajorsList(datasetObj);
-                drawTopEmployers(topEmployerObjList, 5);
-                drawTopMajors(topMajorObjList);
-            })
-
-            //height of the nav bar
-            var navHeight = 0;
             //define the ready function which will be called when the page is ready
             ready = function() {
-                navHeight = $(".nav").height();
                 //handles calculating spacing variables based on window dimensions (ie. center-vertical)
                 function e() {
                     $(".page").outerHeight($(window).height()), 
                     wh = $(window).height(), 
                     ww = $(window).width(), 
-                    $(".bg-image").outerHeight(.4 * wh), 
-                    $(".orange-fill, .blue-fill").height(.4 * wh), 
+                    $(".bg-image").outerHeight(.4 * wh),
                     $(".center-vertical").each(function() {
-                        amount = $(this).parent().height() / 2 - $(this).height() / 2, 
-                        $(this).hasClass("plus-nav") && (amount += $(".nav").height()), 
-                        $(this).hasClass("plus-nav"), 
-                        $(this).css("padding-top", amount)
+                        $(this).css("padding-top", $(this).parent().height() / 2 - $(this).height() / 2)
                     });
-                    //recalc the various items created by d3
-                    //recalcTopEmployers();
-                    //recalcMap();
-                    //recalcTrends();
                 }
-                //click event for the mobile hamburger button
-                $("#hamburger-menu").click(function() {
-                    //show the div with jquery slide transition
-                    $("#mobile-nav").slideToggle("fast")
-                }),
-                //click event for links on mobile
-                $("a.mobile").click(function() {
-                    //slide up the expanded menu
-                    $("#mobile-nav").delay(400).slideUp("fast")
-                }),
                 //recalc spacing vars if a img suddenly loads in
-                $("img").load(function() {
-                    e()
-                }), 
+                $("img").load(function() { e(); }), 
                 //recalc spacing vars if the window is resized
-                $(window).resize(function() {
-                    e()
-                }), 
+                $(window).resize(function() { e(); }), 
                 //calc the spacing vars for the first time
-                e(), 
-                //highlight the selected link in the nav bar
-                $('.nav a').click(function() { 
-                    //ensure that the hamburger isn't highlighted
-                    if ($(this).hasClass("button-collapse")){
-                        $(this).removeClass("active");
-                    } else {
-                        $(".nav a").removeClass("active"), 
-                        $(this).addClass("active")
-                    }
-                }),
-                //setup the menu links to move to the position in the HTML
-                $(".jumpLink").on("click", function( e ) {
-                    e.preventDefault();
-                    //animate scrolling the page to the top of the element minus the height of the nav bar (.6 sec)
-                    $("body, html").animate({ 
-                        scrollTop: $( $(this).attr('href') ).offset().top - navHeight
-                    }, 600);
-                });
+                e();
             }, 
             //map the ready function as the function to call on
                 //doc ready and the similar (older) page load 
@@ -120,80 +53,13 @@
         </script>
     </head>
     <body>
-        <!-- class nav is used instead of element <nav> to avoid style clash with materialize -->
-        <div class="nav">
-            <!-- NavBar elements for desktops -->
-            <a class='desktop jumpLink active' href='#home'>TigerCharts</a> <!-- replace with logo -->
-            <a class='desktop jumpLink' href='#topEmployersImg'>Top Employers</a>
-            <a class='desktop jumpLink' href='#chart_top_employed_majors_cardImg'>Employment by Major</a>
-            <a class='desktop jumpLink' href='#employmentMapImg'>Employment Map</a>
-            <a class='desktop jumpLink' href='#trendsImg'>Employer Trends</a>
-            
-            <!-- Collapsed navbar that will show for mobile devices -->
-            <!-- Hamburger -->
-            <a data-activates="mobile-demo" class="button-collapse" id="hamburger-menu"><i class="material-icons">menu</i></a>
-            <!-- TigerCharts collapsed text -->
-            <h2 class='mobile mob-nav-header' style='font-size: 24px; text-align: left; color: white; padding:0; margin: 0; position: relative; top: -5px; font-weight: 300'>TigerCharts</h2>
-            <div id="mobile-nav">
-                <a class='mobile jumpLink' href='#topEmployersImg'>Top Employers</a>
-                <a class='mobile jumpLink' href='#chart_top_employed_majors_cardImg'>Majors</a>
-                <a class='mobile jumpLink' href='#employmentMapImg'>Employment Map</a>
-                <a class='mobile jumpLink' href='#trendsImg'>Employer Trends</a>
-            </div>
-        </div>
         <!-- Intro Screen Fill with logo and background image -->
         <div class='page background' id='home'>
-            <div class='center-vertical plus-nav center'>
-                <!--<img id="logo" src="./images/Logo.png" alt="TigerCharts Logo" />-->
-                <h3 style='text-align: center; color: white; position: relative; top: 48px;'>Welcome to the Dev Build</h3>
-                <br>
-                <p><em>This is a work in progress and is not yet complete</em></p>
+            <div class=' center-vertical center'>
+                <img id="logo" src="./images/Logo.png" alt="TigerCharts Logo" />
             </div>
-        </div>    
-        <div class='blue-fill' id="topEmployersImg"></div>
-        <div class='bg-image' style='background-image: url(./images/companies.jpg)'>
-            <h1 class="center-vertical">Top Employers</h1>
         </div>
-        <div class="help-tip">
-	            <p>These charts show the distribution of majors hired for the top 5 hiring companies.</p>
-            </div>
-        <div class="card-content grey-text text-darken-3" id="topEmployers">
-            <div id="chart_top_employers"></div>
-        </div><!--
-        <div class='blue-fill' id="chart_top_employed_majors_cardImg"></div>
-        <div class='bg-image' style='background-image: url(./images/code.jpg)'>
-            <h1 class="center-vertical">Employent by Major</h1>
-        </div>-->
-        <div class="help-tip">
-                <p>This list shows the total number of Co-Ops divided by major.</p>
-        </div>
-        <div class="card-content grey-text text-darken-3" id="chart_top_employed_majors_card">
-            <div id="chart_top_employed_majors"></div>
-        </div>
-        <!--
-        <div class='blue-fill' id="employmentMapImg"></div>
-        <div class='bg-image' style='background-image: url(./images/travel.png)'>
-            <h1 class="center-vertical">Employment Map</h1>
-        </div>
-        <div class="help-tip">
-	            <p>This map shows the number of reported Co-Ops in each state.</p>
-            </div>
-        <div class="card-content grey-text text-darken-3" id="employmentMap">
-            <div id="map_employment"></div>
-        </div>
-        <div class='blue-fill' id="trendsImg"></div>
-        <div class='bg-image' style='background-image: url(./images/trends.jpg)'>
-            <h1 class="center-vertical">Employer Trends</h1>
-        </div>
-        <div class="card-content grey-text text-darken-3" id="trends">
-            <div class="help-tip">
-	            <p>This chart shows the total employment trends per term.</p>
-            </div>
-            <div id="chart_employer_trends"></div>
-        </div>
-        <div class='blue-fill'></div>
-        <div class='bg-image' style='background-image: url(./images/rit.jpg)'></div>
-        <footer class="page-footer" style="background-color: #f58625;margin-top:0px;">
+        <footer class="page-footer" style="background-color: #f58625; margin-top:0px;">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
@@ -224,7 +90,7 @@
                 <a class="grey-text text-lighten-3" target="_blank" href="http://materializecss.com/">Materialize</a>
                 <a class="grey-text text-lighten-3" target="_blank" href="https://logomakr.com/">Logomakr</a>
             </div>
-          </div>-->
+          </div>
           <div class="footer-copyright">
             <div class="container center-align">
                 © 2016 Copyright Ryan Bell - Dan Fisher - Will Frey
