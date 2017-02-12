@@ -23,7 +23,7 @@
         
         <!-- Custom js -->
         <script src="scripts.js"></script>
-        
+         
         <!-- Roboto Font -->
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <script>
@@ -50,9 +50,1111 @@
                 //doc ready and the similar (older) page load 
             $(document).ready(ready), 
             $(document).on("page:load", ready)
+
+
+/*
+let keys = $.map($.map($('#salary-data thead tr')[0].children, (i)=>{
+  return Array(i.colSpan).fill(i.innerText.replace(/\((.+)\)/, '').trim());
+}), function(i,n){
+  i = i? i + ': ' : i;
+  return i + $('#salary-data thead tr')[1].children[n].innerText
+});
+let rows = [];
+$('tbody tr').each((i,n)=>{
+  let obj = {};
+  $.map(n.children, (a,b)=>{obj[keys[b]] = a.innerText})
+  rows.push(obj)
+})
+*/
         </script>
     </head>
     <body>
+<table class="footable table-striped tablet footable-loaded" data-filter="#filter" data-filter-text-only="true" id="salary-data"><thead><tr class="footable-group-row">
+            <th data-group="group0" colspan="1">&nbsp;</th>
+			<th colspan="3" data-group="group1">Co-op</th>
+			<th colspan="3" data-group="group2">Full-time (Entry Level)</th>
+		</tr><tr>
+            <th data-group="group0" class="footable-visible footable-first-column">Degree</th>
+			<th data-group="group1" data-hide="phone" class="footable-visible">Min</th>
+			<th data-group="group1" data-hide="phone" class="footable-visible">Avg</th>
+			<th data-group="group1" data-hide="phone" class="footable-visible">Max</th>
+			<th data-group="group2" data-hide="phone" class="footable-visible">Min</th>
+			<th data-group="group2" data-hide="phone" class="footable-visible">Median</th>
+			<th data-group="group2" data-hide="phone" class="footable-visible footable-last-column">Max</th>
+		</tr></thead><tbody><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/3d-digital-design-bfa">3D Digital Graphics (BFA)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/accounting-bs">Accounting (BS)</a></td>
+			<td class="footable-visible">$9.00</td>
+			<td class="footable-visible">$14.78</td>
+			<td class="footable-visible">$30.00</td>
+			<td class="footable-visible">$30,000.00</td>
+			<td class="footable-visible">$40,000.00</td>
+			<td class="footable-visible footable-last-column">$75,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/advertising-and-public-relations-bs">Advertising and Public Relations (BS)</a></td>
+			<td class="footable-visible">$9.00</td>
+			<td class="footable-visible">$12.01</td>
+			<td class="footable-visible">$27.00</td>
+			<td class="footable-visible">$35,000.00</td>
+			<td class="footable-visible">$37,404.00</td>
+			<td class="footable-visible footable-last-column">$37,696.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/applied-and-computational-mathematics-ms">Applied and Computational Mathematics (MS)</a></td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">$18.00</td>
+			<td class="footable-visible">$37.00</td>
+			<td class="footable-visible">$46,000.00</td>
+			<td class="footable-visible">$60,181.00</td>
+			<td class="footable-visible footable-last-column">$75,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Applied Arts and Sciences (BS)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/applied-mathematics-bs">Applied Mathematics (BS)</a></td>
+			<td class="footable-visible">$8.00</td>
+			<td class="footable-visible">$15.88</td>
+			<td class="footable-visible">$22.50</td>
+			<td class="footable-visible">$37,000.00</td>
+			<td class="footable-visible">$66,500.00</td>
+			<td class="footable-visible footable-last-column">$70,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/applied-statistics-and-actuarial-science-bs">Applied Statistics and Actuarial Science (BS)</a></td>
+			<td class="footable-visible">$12.00</td>
+			<td class="footable-visible">$14.10</td>
+			<td class="footable-visible">$17.00</td>
+			<td class="footable-visible">$55,000.00</td>
+			<td class="footable-visible">$62,932.00</td>
+			<td class="footable-visible footable-last-column">$70,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/applied-statistics-ms">Applied Statistics (MS)</a></td>
+			<td class="footable-visible">$13.00</td>
+			<td class="footable-visible">$21.04</td>
+			<td class="footable-visible">$25.00</td>
+			<td class="footable-visible">$40,000.00</td>
+			<td class="footable-visible">$57,000.00</td>
+			<td class="footable-visible footable-last-column">$74,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/sustainability/item/architecture">Architecture (M.Arch.)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$12.00</td>
+			<td class="footable-visible">$17.00</td>
+			<td class="footable-visible">$35,000.00</td>
+			<td class="footable-visible">$38,000.00</td>
+			<td class="footable-visible footable-last-column">$42,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/cias/item/art-education-visual-art-all-grades-mst?category_id=16">Art Education (Visual Art-all grades) MST</a></td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">$40,000.00</td>
+			<td class="footable-visible">$40,000.00</td>
+			<td class="footable-visible footable-last-column">$60,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><!--StartFragment-->Astrophysical Sciences and Technology<!--EndFragment--> (MS)</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Astrophysical Sciences and Technology (Ph.D.)</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/biochemistry-bs">Biochemistry (BS)</a></td>
+			<td class="footable-visible">$9.38</td>
+			<td class="footable-visible">$11.40</td>
+			<td class="footable-visible">$19.00</td>
+			<td class="footable-visible">$35,100.00</td>
+			<td class="footable-visible">$45,000.00</td>
+			<td class="footable-visible footable-last-column">$55,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/bioinformatics-bs">Bioinformatics (BS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$11.00</td>
+			<td class="footable-visible">$13.00</td>
+			<td class="footable-visible"><!--StartFragment-->ID<!--EndFragment--></td>
+			<td class="footable-visible"><!--StartFragment-->ID<!--EndFragment--></td>
+			<td class="footable-visible footable-last-column"><!--StartFragment-->ID<!--EndFragment--></td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/bioinformatics-ms">Bioinformatics (MS)</a></td>
+			<td class="footable-visible">$16.00</td>
+			<td class="footable-visible">$22.71</td>
+			<td class="footable-visible">$36.05</td>
+			<td class="footable-visible"><!--StartFragment-->ID<!--EndFragment--></td>
+			<td class="footable-visible"><!--StartFragment-->ID<!--EndFragment--></td>
+			<td class="footable-visible footable-last-column"><!--StartFragment-->ID<!--EndFragment--></td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/biology-bs">Biology (BS)</a></td>
+			<td class="footable-visible">$7.75</td>
+			<td class="footable-visible">$10.75</td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">$28,438.00</td>
+			<td class="footable-visible">$32,738.00</td>
+			<td class="footable-visible footable-last-column">$36,777.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/biomedical-engineering-bs">Biomedical Engineering (BS)</a></td>
+			<td class="footable-visible">$8.00</td>
+			<td class="footable-visible">$15.57</td>
+			<td class="footable-visible">$23.50</td>
+			<td class="footable-visible">$45,000.00</td>
+			<td class="footable-visible">$53,417.00</td>
+			<td class="footable-visible footable-last-column">$62,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Biomedical Sciences (BS)</td>
+			<td class="footable-visible">$7.81</td>
+			<td class="footable-visible">$8.94</td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/biotechnology-and-molecular-bioscience-bs">Biotechnology and Molecular Bioscience (BS)</a></td>
+			<td class="footable-visible">$11.00</td>
+			<td class="footable-visible">$17.20</td>
+			<td class="footable-visible">$22.50</td>
+			<td class="footable-visible">$27,000.00</td>
+			<td class="footable-visible">$38,600.00</td>
+			<td class="footable-visible footable-last-column">$48,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/master-of-business-administration-mba">Business Administration (MBA)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$16.50</td>
+			<td class="footable-visible">$27.50</td>
+			<td class="footable-visible">$30,000.00</td>
+			<td class="footable-visible">$48,000.00</td>
+			<td class="footable-visible footable-last-column">$90,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/master-of-business-administration-mba">Business Administration - Accounting (MBA)</a></td>
+			<td class="footable-visible">$13.00</td>
+			<td class="footable-visible">$18.39</td>
+			<td class="footable-visible">$38.00</td>
+			<td class="footable-visible">$36,000.00</td>
+			<td class="footable-visible">$45,000.00</td>
+			<td class="footable-visible footable-last-column">$67,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/master-of-business-administration-mba">Business Administration - Executive (MBA)</a></td>
+			<td class="footable-visible">$13.00</td>
+			<td class="footable-visible">$18.39</td>
+			<td class="footable-visible">$38.00</td>
+			<td class="footable-visible">$30,000.00</td>
+			<td class="footable-visible">$45,500.00</td>
+			<td class="footable-visible footable-last-column">$150,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/ceramics-bfa">Ceramics (BFA)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/ceramics-mfa">Ceramics (MFA)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/chemical-engineering-bs">Chemical Engineering (BS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$16.88</td>
+			<td class="footable-visible">$31.88</td>
+			<td class="footable-visible">$52,000.00</td>
+			<td class="footable-visible">$65,000.00</td>
+			<td class="footable-visible footable-last-column">$85,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/chemistry-bs">Chemistry (BS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$14.74</td>
+			<td class="footable-visible">$22.00</td>
+			<td class="footable-visible">$37,200.00</td>
+			<td class="footable-visible">$50,600.00</td>
+			<td class="footable-visible footable-last-column">$64,200.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/chemistry-ms">Chemistry (MS)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">$42,000.00</td>
+			<td class="footable-visible">$47,000.00</td>
+			<td class="footable-visible footable-last-column">$52,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/civil-engineering-technology-bs">Civil Engineering Technology (BS)</a></td>
+			<td class="footable-visible">$9.75</td>
+			<td class="footable-visible">$14.42</td>
+			<td class="footable-visible">$29.75</td>
+			<td class="footable-visible">$37,400.00</td>
+			<td class="footable-visible">$48,700.00</td>
+			<td class="footable-visible footable-last-column">$59,900.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Color Science (MS)</td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">$22.50</td>
+			<td class="footable-visible">$30.00</td>
+			<td class="footable-visible">$70,000.00</td>
+			<td class="footable-visible">$72,000.00</td>
+			<td class="footable-visible footable-last-column">$90,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Color Science (Ph.D.)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/communication-bs">Communication (BS)</a></td>
+			<td class="footable-visible">$9.00</td>
+			<td class="footable-visible">$12.08</td>
+			<td class="footable-visible">$20.00</td>
+			<td class="footable-visible">$34,667.00</td>
+			<td class="footable-visible">$37,544.00</td>
+			<td class="footable-visible footable-last-column">$40,588.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Communication and Media Technologies (MS)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/home/business-management-and-communication/item/master-of-science">Computational Finance (MS)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/computational-mathematics-bs">Computational Mathematics (BS)</a></td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">$16.67</td>
+			<td class="footable-visible">$19.00</td>
+			<td class="footable-visible">$55,000.00</td>
+			<td class="footable-visible">$62,932.00</td>
+			<td class="footable-visible footable-last-column">$70,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/computer-engineering-bs">Computer Engineering (BS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$20.51</td>
+			<td class="footable-visible">$42.00</td>
+			<td class="footable-visible">$57,000.00</td>
+			<td class="footable-visible">$60,305.00</td>
+			<td class="footable-visible footable-last-column">$90,500.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/computer-engineering-ms">Computer Engineering (MS)</a></td>
+			<td class="footable-visible">$16.00</td>
+			<td class="footable-visible">$27.88</td>
+			<td class="footable-visible">$42.00</td>
+			<td class="footable-visible">$71,000.00</td>
+			<td class="footable-visible">$78,500.00</td>
+			<td class="footable-visible footable-last-column">$90,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/computer-engineering-technology-bs">Computer Engineering Technology (BS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$18.87</td>
+			<td class="footable-visible">$38.00</td>
+			<td class="footable-visible">$63,000.00</td>
+			<td class="footable-visible">$65,000.00</td>
+			<td class="footable-visible footable-last-column">$68,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/computing-information-sciences/item/computer-science-bs">Computer Science (BS)</a></td>
+			<td class="footable-visible">$7.50</td>
+			<td class="footable-visible">$21.15</td>
+			<td class="footable-visible">$48.00</td>
+			<td class="footable-visible">$40,000.00</td>
+			<td class="footable-visible">$84,000.00</td>
+			<td class="footable-visible footable-last-column">$120,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/computing-information-sciences/item/computer-science-ms">Computer Science (MS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$26.78</td>
+			<td class="footable-visible">$58.00</td>
+			<td class="footable-visible">$50,000.00</td>
+			<td class="footable-visible">$89,000.00</td>
+			<td class="footable-visible footable-last-column">$117,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/gccis/item/computing-and-information-technologies-bs">Computing and Information Technologies BS</a></td>
+			<td class="footable-visible">&nbsp;</td>
+			<td class="footable-visible">$16.85</td>
+			<td class="footable-visible">&nbsp;</td>
+			<td class="footable-visible">&nbsp;</td>
+			<td class="footable-visible">$67,000.00</td>
+			<td class="footable-visible footable-last-column">&nbsp;</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Computing and Information Sciences (Ph.D.)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/computing-information-sciences/item/computing-security-bs">Computing Security (BS)</a></td>
+			<td class="footable-visible">$8.00</td>
+			<td class="footable-visible">$18.86</td>
+			<td class="footable-visible">$43.50</td>
+			<td class="footable-visible">$42,000.00</td>
+			<td class="footable-visible">$64,251.00</td>
+			<td class="footable-visible footable-last-column">$160,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/gccis/item/computing-security-ms-2?category_id=13">Computing Security (MS)</a></td>
+			<td class="footable-visible">$20.00</td>
+			<td class="footable-visible">$31.60</td>
+			<td class="footable-visible">$52.00</td>
+			<td class="footable-visible">$55,000.00</td>
+			<td class="footable-visible"><!--StartFragment-->$64,251.00<!--EndFragment--></td>
+			<td class="footable-visible footable-last-column">$130,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Computing Security (BS/MS)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/social-sciences-humanities-and-education/item/criminal-justice-bs">Criminal Justice (BS)</a></td>
+			<td class="footable-visible">$9.72</td>
+			<td class="footable-visible">$17.74</td>
+			<td class="footable-visible">$27.00</td>
+			<td class="footable-visible">$39,367.00</td>
+			<td class="footable-visible">$36,500.00</td>
+			<td class="footable-visible footable-last-column">$44,069.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/social-sciences-humanities-and-education/item/criminal-justice-ms">Criminal Justice (MS)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">$40,333.00</td>
+			<td class="footable-visible">$46,968.00</td>
+			<td class="footable-visible footable-last-column">$46,968.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/health-sciences/item/diagnostic-medical-sonography-bs">Diagnostic Medical Sonography (ultrasound) (BS)</a></td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">$40,000.00</td>
+			<td class="footable-visible">$45,700.00</td>
+			<td class="footable-visible footable-last-column">$59,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Digital Humanities and Social Sciences</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">&nbsp;</td>
+			<td class="footable-visible">&nbsp;</td>
+			<td class="footable-visible footable-last-column">&nbsp;</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/social-sciences-humanities-and-education/item/economics-bs">Economics (BS)</a></td>
+			<td class="footable-visible">$9.00</td>
+			<td class="footable-visible">$12.90</td>
+			<td class="footable-visible">$25.00</td>
+			<td class="footable-visible">$53,670.00</td>
+			<td class="footable-visible">$54,800.00</td>
+			<td class="footable-visible footable-last-column">$56,850.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/electrical-engineering-bs">Electrical Engineering (BS)</a></td>
+			<td class="footable-visible">$12.00</td>
+			<td class="footable-visible">$18.25</td>
+			<td class="footable-visible">$29.00</td>
+			<td class="footable-visible">$59,000.00</td>
+			<td class="footable-visible">$64,000.00</td>
+			<td class="footable-visible footable-last-column">$80,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/electrical-engineering-ms">Electrical Engineering (MS)</a></td>
+			<td class="footable-visible">$12.50</td>
+			<td class="footable-visible">$24.23</td>
+			<td class="footable-visible">$40.00</td>
+			<td class="footable-visible">$65,000.00</td>
+			<td class="footable-visible">$67,500.00</td>
+			<td class="footable-visible footable-last-column">$81,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/electrical-engineering-technology-bs">Electrical Engineering Technology (BS)</a></td>
+			<td class="footable-visible">$12.50</td>
+			<td class="footable-visible">$17.90</td>
+			<td class="footable-visible">$25.00</td>
+			<td class="footable-visible">$60,000.00</td>
+			<td class="footable-visible">$65,000.00</td>
+			<td class="footable-visible footable-last-column">$70,500.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/electrical-mechanical-engineering-technology-bs">Electrical/Mechanical Engineering Technology (BS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$17.25</td>
+			<td class="footable-visible">$27.25</td>
+			<td class="footable-visible">$40,500.00</td>
+			<td class="footable-visible">$57,000.00</td>
+			<td class="footable-visible footable-last-column">$74,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Engineering Management (ME)</td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$21.65</td>
+			<td class="footable-visible">$36.54</td>
+			<td class="footable-visible">$50,000.00</td>
+			<td class="footable-visible">$63,000.00</td>
+			<td class="footable-visible footable-last-column">$70,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Entrepreneurship &amp; Innovative Ventures (MS)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/environmental-health-and-safety-management-ms">Environmental, Health, and Safety Management (MS)</a></td>
+			<td class="footable-visible">$20.00</td>
+			<td class="footable-visible">$22.00</td>
+			<td class="footable-visible">$24.00</td>
+			<td class="footable-visible">$61,000.00</td>
+			<td class="footable-visible">$64,300.00</td>
+			<td class="footable-visible footable-last-column">$70,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/environmental-science-bs">Environmental Science (BS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$12.25</td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">$34,093.00</td>
+			<td class="footable-visible">$40,500.00</td>
+			<td class="footable-visible footable-last-column">$62,872.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/environmental-science-ms">Environmental Science (MS)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">$48,100.00</td>
+			<td class="footable-visible">$61,200.00</td>
+			<td class="footable-visible footable-last-column">$69,900.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/cast/item/environmental-sustainability-health-and-safety-bs-bs-ms?category_id=12">Environmental Sustainability Health, and Safety (BS, BS/MS)</a></td>
+			<td class="footable-visible">$8.75</td>
+			<td class="footable-visible">$16.50</td>
+			<td class="footable-visible">$30.00</td>
+			<td class="footable-visible">$40,000.00</td>
+			<td class="footable-visible">$51,000.00</td>
+			<td class="footable-visible footable-last-column">$72,500.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/social-sciences-humanities-and-education/item/experimental-psychology-ms">Experimental Psychology (MS)</a></td>
+			<td class="footable-visible">$12.50</td>
+			<td class="footable-visible">$16.56</td>
+			<td class="footable-visible">$20.00</td>
+			<td class="footable-visible"><!--StartFragment-->$40,653.00<!--EndFragment--></td>
+			<td class="footable-visible"><!--StartFragment-->$43,092.00<!--EndFragment--></td>
+			<td class="footable-visible footable-last-column"><!--StartFragment-->$50,275.00<!--EndFragment--></td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Facility Management (MS)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/film-and-animation-bfa">Film and Animation (BFA)</a></td>
+			<td class="footable-visible">$12.00</td>
+			<td class="footable-visible">$25.00</td>
+			<td class="footable-visible">$48.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/film-and-animation-mfa">Film and Animation (MFA)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$24.21</td>
+			<td class="footable-visible">$40.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/finance-bs">Finance (BS)</a></td>
+			<td class="footable-visible">$9.00</td>
+			<td class="footable-visible">$15.52</td>
+			<td class="footable-visible">$40.00</td>
+			<td class="footable-visible">$40,000.00</td>
+			<td class="footable-visible">$54,000.00</td>
+			<td class="footable-visible footable-last-column">$75,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/finance-ms">Finance (MS)</a></td>
+			<td class="footable-visible">$11.00</td>
+			<td class="footable-visible">$20.25</td>
+			<td class="footable-visible">$25.00</td>
+			<td class="footable-visible">$62,000.00</td>
+			<td class="footable-visible">$62,000.00</td>
+			<td class="footable-visible footable-last-column">$69,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/fine-arts-studio-bfa">Fine Arts Studio (BFA)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/fine-arts-studio-mfa">Fine Arts Studio (MFA)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/furniture-design-bfa">Furniture Design (BFA)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/furniture-design-mfa">Furniture Design (MFA)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/computing-information-sciences/item/game-design-and-development-bs">Game Design and Development (BS)</a></td>
+			<td class="footable-visible">$7.50</td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">$44.00</td>
+			<td class="footable-visible">$33,600.00</td>
+			<td class="footable-visible">$67,500.00</td>
+			<td class="footable-visible footable-last-column">$99,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/computing-information-sciences/item/game-design-and-development-ms">Game Design and Development (MS)</a></td>
+			<td class="footable-visible">$7.50</td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">$44.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/glass-bfa">Glass (BFA)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/glass-mfa">Glass (MFA)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/graphic-design-bfa">Graphic Design (BFA)</a></td>
+			<td class="footable-visible">$8.75</td>
+			<td class="footable-visible">$13.50</td>
+			<td class="footable-visible">$18.25</td>
+			<td class="footable-visible">$38,000.00</td>
+			<td class="footable-visible">$47,638.00</td>
+			<td class="footable-visible footable-last-column">$70,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Health Systems Administration (MS)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">$50,000.00</td>
+			<td class="footable-visible">$55,000.00</td>
+			<td class="footable-visible footable-last-column">$60,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Hospitality-Tourism Management (MS)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/gccis/item/human-centered-computing-bs?category_id=13">Human-Centered Computing (BS)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="http://www.rit.edu/emcs/programoverviews/browse-by-college/gccis/item/human-centered-computing-bs?category_id=13">Human-Computer Interaction (MS)</a></td>
+			<td class="footable-visible">$11.00</td>
+			<td class="footable-visible">$22.75</td>
+			<td class="footable-visible">$36.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/cast/item/human-resource-development-ms?category_id=12">Human Resource Development (MS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$13.92</td>
+			<td class="footable-visible">$22.00</td>
+			<td class="footable-visible">$55,640.00</td>
+			<td class="footable-visible">$77,170.00</td>
+			<td class="footable-visible footable-last-column">$99,720.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/illustration-bfa">Illustration (BFA)</a></td>
+			<td class="footable-visible">$9.00</td>
+			<td class="footable-visible">$9.60</td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$26,325.00</td>
+			<td class="footable-visible">$32,192.00</td>
+			<td class="footable-visible footable-last-column">$38,636.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Imaging Arts (MFA)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/imaging-science-bs">Imaging Science (BS)</a></td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">$20.38</td>
+			<td class="footable-visible">$25.77</td>
+			<td class="footable-visible">$70,000.00</td>
+			<td class="footable-visible">$72,000</td>
+			<td class="footable-visible footable-last-column">$75,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/imaging-science-ms">Imaging Science (MS)</a></td>
+			<td class="footable-visible">$11.00</td>
+			<td class="footable-visible">$28.35</td>
+			<td class="footable-visible">$40.00</td>
+			<td class="footable-visible">$70,000.00</td>
+			<td class="footable-visible">$85,000</td>
+			<td class="footable-visible footable-last-column">$90,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/imaging-science-phd">Imaging Science (Ph.D.)</a></td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">$32.65</td>
+			<td class="footable-visible">$40.87</td>
+			<td class="footable-visible">$110,000.00</td>
+			<td class="footable-visible">$130,000</td>
+			<td class="footable-visible footable-last-column">$140,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/industrial-design-bfa">Industrial Design (BFA)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$18.00</td>
+			<td class="footable-visible">$30.00</td>
+			<td class="footable-visible">$24,000.00</td>
+			<td class="footable-visible">$45,000.00</td>
+			<td class="footable-visible footable-last-column">$60,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/industrial-design-mfa">Industrial Design (MFA)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$22.41</td>
+			<td class="footable-visible">$40.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/industrial-engineering-bs">Industrial Engineering (BS)</a></td>
+			<td class="footable-visible">$9.50</td>
+			<td class="footable-visible">$17.00</td>
+			<td class="footable-visible">$36.00</td>
+			<td class="footable-visible">$42,000.00</td>
+			<td class="footable-visible">$58,080.00</td>
+			<td class="footable-visible footable-last-column">$65,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/industrial-engineering-me">Industrial Engineering (ME)</a></td>
+			<td class="footable-visible">$16.00</td>
+			<td class="footable-visible">$20.09</td>
+			<td class="footable-visible">$26.56</td>
+			<td class="footable-visible">$50,000.00</td>
+			<td class="footable-visible">$63,300.00</td>
+			<td class="footable-visible footable-last-column">$75,500.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/industrial-engineering-ms">Industrial Engineering (MS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$24.08</td>
+			<td class="footable-visible">$45.00</td>
+			<td class="footable-visible">$60,000.00</td>
+			<td class="footable-visible">$69,000.00</td>
+			<td class="footable-visible footable-last-column">$72,300.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/computing-information-sciences/item/information-sciences-and-technologies-ms">Information Sciences and Technologies (MS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$17.85</td>
+			<td class="footable-visible">$33.00</td>
+			<td class="footable-visible">$55,000.00</td>
+			<td class="footable-visible">$60,000.00</td>
+			<td class="footable-visible footable-last-column">$100,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/interior-design-bfa">Interior Design (BFA)</a></td>
+			<td class="footable-visible">$12.00</td>
+			<td class="footable-visible">$16.00</td>
+			<td class="footable-visible">$22.50</td>
+			<td class="footable-visible">$25,534.00</td>
+			<td class="footable-visible">$42,176.00</td>
+			<td class="footable-visible footable-last-column">$49,412.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/international-business-bs">International Business (BS)</a></td>
+			<td class="footable-visible">$9.00</td>
+			<td class="footable-visible">$12.16</td>
+			<td class="footable-visible">$20.00</td>
+			<td class="footable-visible">$38,000.00</td>
+			<td class="footable-visible">$38,000.00</td>
+			<td class="footable-visible footable-last-column">$50,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/international-hospitality-and-service-management-bs">International Hospitality and Service Management (BS)</a></td>
+			<td class="footable-visible">$7.50</td>
+			<td class="footable-visible">$10.14</td>
+			<td class="footable-visible">$20.00</td>
+			<td class="footable-visible">$34,000.00</td>
+			<td class="footable-visible">$41,350.00</td>
+			<td class="footable-visible footable-last-column">$48,400.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/cola/item/international-and-global-studies">International and Global Studies (BS)</a></td>
+			<td class="footable-visible">$9.25</td>
+			<td class="footable-visible">$9.81</td>
+			<td class="footable-visible">$12.00</td>
+			<td class="footable-visible">$44,711</td>
+			<td class="footable-visible">$53,921</td>
+			<td class="footable-visible footable-last-column">$53,921</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/social-sciences-humanities-and-education/item/journalism-bs">Journalism (BS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$11.19</td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">$30,242.00</td>
+			<td class="footable-visible">$33,065.00</td>
+			<td class="footable-visible footable-last-column">$40,200.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/management-bs">Management (BS)</a></td>
+			<td class="footable-visible">$9.50</td>
+			<td class="footable-visible">$11.74</td>
+			<td class="footable-visible">$28.00</td>
+			<td class="footable-visible">$37,000.00</td>
+			<td class="footable-visible">$46,333.00</td>
+			<td class="footable-visible footable-last-column">$63,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/management-ms">Management (MS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$19.25</td>
+			<td class="footable-visible">$26.00</td>
+			<td class="footable-visible">$27,040.00</td>
+			<td class="footable-visible">$43,000.00</td>
+			<td class="footable-visible footable-last-column">$100,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/management-information-systems-bs">Management Information Systems (BS)</a></td>
+			<!--StartFragment-->
+			<td class="footable-visible">$10.00 <!--EndFragment--></td>
+			<td class="footable-visible">$17.17</td>
+			<td class="footable-visible">$33.00</td>
+			<td class="footable-visible">$36,000.00</td>
+			<td class="footable-visible">$62,000.00</td>
+			<td class="footable-visible footable-last-column">$90,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/manufacturing-and-mechanical-systems-integration-ms">Manufacturing and Mechanical Systems Integration (MS)</a></td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">$23.00</td>
+			<td class="footable-visible">$30.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/manufacturing-engineering-technology-bs">Manufacturing Engineering Technology (BS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$17.33</td>
+			<td class="footable-visible">$26.00</td>
+			<td class="footable-visible">$54,000.00</td>
+			<td class="footable-visible">$62,000.00</td>
+			<td class="footable-visible footable-last-column">$70,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/manufacturing-leadership-ms">Manufacturing Leadership (MS)</a></td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/marketing-bs">Marketing (BS)</a></td>
+			<td class="footable-visible">$9.25</td>
+			<td class="footable-visible">$12.56</td>
+			<td class="footable-visible">$19.00</td>
+			<td class="footable-visible">$45,000.00</td>
+			<td class="footable-visible">$55,000.00</td>
+			<td class="footable-visible footable-last-column">$70,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/saunders/item/master-of-science?category_id=11">Master of Science in Business</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$16.50</td>
+			<td class="footable-visible">$27.50</td>
+			<td class="footable-visible">$31,200.00</td>
+			<td class="footable-visible">$61,200.00</td>
+			<td class="footable-visible footable-last-column">$69,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Materials Science and Engineering (MS)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">$55,000.00</td>
+			<td class="footable-visible">$59,650.00</td>
+			<td class="footable-visible footable-last-column">$75,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/mechanical-engineering-bs">Mechanical Engineering (BS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$17.02</td>
+			<td class="footable-visible">$35.00</td>
+			<td class="footable-visible">$40,000.00</td>
+			<td class="footable-visible">$59,047.00</td>
+			<td class="footable-visible footable-last-column">$70,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/mechanical-engineering-me">Mechanical Engineering (ME)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$19.91</td>
+			<td class="footable-visible">$28.85</td>
+			<td class="footable-visible">$48,000.00</td>
+			<td class="footable-visible">$63,724.00</td>
+			<td class="footable-visible footable-last-column">$95,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/mechanical-engineering-ms">Mechanical Engineering (MS)</a></td>
+			<td class="footable-visible">$20.00</td>
+			<td class="footable-visible">$26.18</td>
+			<td class="footable-visible">$30.00</td>
+			<td class="footable-visible">$56,250.00</td>
+			<td class="footable-visible">$61,500.00</td>
+			<td class="footable-visible footable-last-column">$70,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/mechanical-engineering-technology-bs">Mechanical Engineering Technology (BS)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$17.65</td>
+			<td class="footable-visible">$37.00</td>
+			<td class="footable-visible">$34,000.00</td>
+			<td class="footable-visible">$58,000.00</td>
+			<td class="footable-visible footable-last-column">$84,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/media-arts-and-technology-bs">Media Arts and Technology (BS)</a></td>
+			<td class="footable-visible">$7.50</td>
+			<td class="footable-visible">$14.00</td>
+			<td class="footable-visible">$27.00</td>
+			<td class="footable-visible">$35,000.00</td>
+			<td class="footable-visible">$45,000.00</td>
+			<td class="footable-visible footable-last-column">$65,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/medical-illustration-bfa">Medical Illustration (BFA)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/medical-illustration-mfa">Medical Illustration (MFA)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/computing-information-sciences/item/medical-informatics-bs">Medical Informatics (BS)</a></td>
+			<td class="footable-visible">$10.45</td>
+			<td class="footable-visible">$11.61</td>
+			<td class="footable-visible">$12.00</td>
+			<td class="footable-visible">$37,500.00</td>
+			<td class="footable-visible">$53,500.00</td>
+			<td class="footable-visible footable-last-column">$65,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/computing-information-sciences/item/medical-informatics-ms">Medical Informatics (MS)</a></td>
+			<td class="footable-visible">$11.00</td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">$21.00</td>
+			<td class="footable-visible">$37,500.00</td>
+			<td class="footable-visible">$53,500.00</td>
+			<td class="footable-visible footable-last-column">$65,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/metals-and-jewelry-design-bfa">Metals and Jewelry Design (BFA)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/metals-and-jewelry-design-mfa">Metals and Jewelry Design (MFA)</a></td>
+			<td class="footable-visible">$13.00</td>
+			<td class="footable-visible">$16.86</td>
+			<td class="footable-visible">$20.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/microelectronic-engineering-bs">Microelectronic Engineering (BS)</a></td>
+			<td class="footable-visible">$16.00</td>
+			<td class="footable-visible">$21.00</td>
+			<td class="footable-visible">$30.00</td>
+			<td class="footable-visible">$65,000.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">$75,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/microelectronic-engineering-ms">Microelectronic Engineering (MS)</a></td>
+			<td class="footable-visible">$19.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">$30.00</td>
+			<td class="footable-visible">$67,000.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">$90,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Microelectronic Manufacturing Engineering (ME)</td>
+			<td class="footable-visible">$19.00</td>
+			<td class="footable-visible">-</td>
+			<td class="footable-visible">$30.00</td>
+			<td class="footable-visible">$67,000.00</td>
+			<td class="footable-visible">-</td>
+			<td class="footable-visible footable-last-column">$90,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Microsystems Engineering (Ph.D.)</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/motion-picture-science-bs">Motion Picture Science (BS)</a></td>
+			<td class="footable-visible">$12.00</td>
+			<td class="footable-visible">$12.83</td>
+			<td class="footable-visible">$14.00</td>
+			<td class="footable-visible">$40,000.00</td>
+			<td class="footable-visible">$60,000.00</td>
+			<td class="footable-visible footable-last-column">$64,500.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Museum Studies (BS)</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/new-media-design-bfa">New Media Design (BFA)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$19.07</td>
+			<td class="footable-visible">$35.00</td>
+			<td class="footable-visible">$50,000.00</td>
+			<td class="footable-visible">$64,300.00</td>
+			<td class="footable-visible footable-last-column">$120,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/computing-information-sciences/item/new-media-interactive-development-bs">New Media Interactive Development (BS)</a></td>
+			<td class="footable-visible">&nbsp;</td>
+			<td class="footable-visible">$16.67</td>
+			<td class="footable-visible">&nbsp;</td>
+			<td class="footable-visible">&nbsp;</td>
+			<td class="footable-visible">$64,300.00</td>
+			<td class="footable-visible footable-last-column">&nbsp;</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/business-management-and-communication/item/new-media-marketing-bs">New Media Marketing (BS)</a></td>
+			<td class="footable-visible">$9.15</td>
+			<td class="footable-visible">$12.56</td>
+			<td class="footable-visible">$20.60</td>
+			<td class="footable-visible">$35,000.00</td>
+			<td class="footable-visible">$42,015.00</td>
+			<td class="footable-visible footable-last-column">$85,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/health-sciences/item/nutrition-management-bs">Nutrition Management (BS)</a></td>
+			<td class="footable-visible">$8.00</td>
+			<td class="footable-visible">$9.67</td>
+			<td class="footable-visible">$15.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="http://www.rit.edu/emcs/programoverviews/home/engineering-and-engineering-technology/item/packaging-science-bs">Packaging Science (BS)</a></td>
+			<td class="footable-visible">$11.00</td>
+			<td class="footable-visible">$19.00</td>
+			<td class="footable-visible">$33.00</td>
+			<td class="footable-visible">$36,000.00</td>
+			<td class="footable-visible">$57,000.00</td>
+			<td class="footable-visible footable-last-column">$66,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="http://www.rit.edu/emcs/programoverviews/home/engineering-and-engineering-technology/item/packaging-science-ms">Packaging Science (MS)</a></td>
+			<td class="footable-visible">$12.00</td>
+			<td class="footable-visible">$22.02</td>
+			<td class="footable-visible">$32.00</td>
+			<td class="footable-visible">$40,000.00</td>
+			<td class="footable-visible">$58,000.00</td>
+			<td class="footable-visible footable-last-column">$72,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/home/social-sciences-humanities-and-education/item/philosophy-bs">Philosophy (BS)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible"><!--StartFragment-->$31,700.00<!--EndFragment--></td>
+			<td class="footable-visible"><!--StartFragment-->$38,000.00<!--EndFragment--></td>
+			<td class="footable-visible footable-last-column"><!--StartFragment-->$47,167.00<!--EndFragment--></td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Photographic and Imaging Arts (BFA)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/cias/item/photographic-imaging-technologies-bs?category_id=16">Photographic &amp; Imaging Technologies (BS)</a></td>
+			<td class="footable-visible">$8.00</td>
+			<td class="footable-visible">$12.56</td>
+			<td class="footable-visible">$22.80</td>
+			<td class="footable-visible">$41,800.00</td>
+			<td class="footable-visible">$57,850.00</td>
+			<td class="footable-visible footable-last-column">$73,900.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Physician Assistant (BS)</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">$53,000.00</td>
+			<td class="footable-visible">$65,000.00</td>
+			<td class="footable-visible footable-last-column">$72,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/science-mathematics-and-imaging-science/item/physics-bs">Physics (BS)</a></td>
+			<td class="footable-visible">$11.00</td>
+			<td class="footable-visible">$12.67</td>
+			<td class="footable-visible">$20.00</td>
+			<td class="footable-visible">$48,445.00</td>
+			<td class="footable-visible">$55,710.00</td>
+			<td class="footable-visible footable-last-column">$62,500.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/cola/item/political-science-bs?category_id=17">Political Science (BS)</a></td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible"><!--StartFragment-->$37,475.00<!--EndFragment--></td>
+			<td class="footable-visible"><!--StartFragment-->$41,785.00<!--EndFragment--></td>
+			<td class="footable-visible footable-last-column"><!--StartFragment-->$49,911.00<!--EndFragment--></td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/art-crafts-design-and-graphic-communications/item/print-media-ms-2">Print Media (MS)</a></td>
+			<td class="footable-visible">$9.00</td>
+			<td class="footable-visible">$17.11</td>
+			<td class="footable-visible">$30.00</td>
+			<td class="footable-visible">$40,000.00</td>
+			<td class="footable-visible">$49,000.00</td>
+			<td class="footable-visible footable-last-column">$65,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/engineering-and-engineering-technology/item/product-development-ms">Product Development (MS)</a></td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">$69,000.00</td>
+			<td class="footable-visible">$88,500.00</td>
+			<td class="footable-visible footable-last-column">$96,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Professional Studies (MS)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/social-sciences-humanities-and-education/item/psychology-bs">Psychology (BS)</a></td>
+			<td class="footable-visible">$9.00</td>
+			<td class="footable-visible">$11.32</td>
+			<td class="footable-visible">$33.00</td>
+			<td class="footable-visible">$31,114.00</td>
+			<td class="footable-visible">$33,681.00</td>
+			<td class="footable-visible footable-last-column">$38,664.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/social-sciences-humanities-and-education/item/public-policy-bs">Public Policy (BS)</a></td>
+			<td class="footable-visible">$13.50</td>
+			<td class="footable-visible">$14.13</td>
+			<td class="footable-visible">$16.00</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Safety Technology (BS)</td>
+			<td class="footable-visible">$12.50</td>
+			<td class="footable-visible">$13.91</td>
+			<td class="footable-visible">$16.38</td>
+			<td class="footable-visible">$36,000.00</td>
+			<td class="footable-visible">$42,500.00</td>
+			<td class="footable-visible footable-last-column">$49,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/social-sciences-humanities-and-education/item/school-psychology-ms">School Psychology (MS)</a></td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">$38,294.00</td>
+			<td class="footable-visible">$42,147.00</td>
+			<td class="footable-visible footable-last-column">$52,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Science, Technology and Public Policy (MS)</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible">N/A</td>
+			<td class="footable-visible footable-last-column">N/A</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Service Leadership and Innovation (MS)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Sociology and Anthropology (BS)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/computing-information-sciences/item/software-engineering-bs">Software Engineering (BS)</a></td>
+			<td class="footable-visible">$9.00</td>
+			<td class="footable-visible">$21.03</td>
+			<td class="footable-visible">$57.30</td>
+			<td class="footable-visible">$44,000.00</td>
+			<td class="footable-visible">$79,500</td>
+			<td class="footable-visible footable-last-column">$110,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="/emcs/programoverviews/home/computing-information-sciences/item/software-engineering-ms">Software Engineering (MS)</a></td>
+			<td class="footable-visible">$12.50</td>
+			<td class="footable-visible">$23.21</td>
+			<td class="footable-visible">$37.00</td>
+			<td class="footable-visible">$52,000.00</td>
+			<td class="footable-visible">$82,200.00</td>
+			<td class="footable-visible footable-last-column">$101,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Sustainability (Ph.D.)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Sustainable Engineering (MS)</td>
+			<td class="footable-visible">$8.25</td>
+			<td class="footable-visible">$17.00</td>
+			<td class="footable-visible">$34.00</td>
+			<td class="footable-visible">$53,000.00</td>
+			<td class="footable-visible">$65,500.00</td>
+			<td class="footable-visible footable-last-column">$76,500.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Sustainable Engineering (ME)</td>
+			<td class="footable-visible">$8.25</td>
+			<td class="footable-visible">$17.00</td>
+			<td class="footable-visible">$34.00</td>
+			<td class="footable-visible">$53,000.00</td>
+			<td class="footable-visible">$65,500.00</td>
+			<td class="footable-visible footable-last-column">$76,500.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Sustainable Systems (MS)</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible">ID</td>
+			<td class="footable-visible footable-last-column">ID</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span>Systems Engineering (ME)</td>
+			<td class="footable-visible">$8.25</td>
+			<td class="footable-visible">$17.00</td>
+			<td class="footable-visible">$34.00</td>
+			<td class="footable-visible">$53,000.00</td>
+			<td class="footable-visible">$65,500.00</td>
+			<td class="footable-visible footable-last-column">$76,500.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/cast/item/telecommunications-engineering-technology-ms">Telecommunications Engineering Technology (MS)</a></td>
+			<td class="footable-visible">$11.00</td>
+			<td class="footable-visible"><!--StartFragment-->ID<!--EndFragment--></td>
+			<td class="footable-visible">$30.00</td>
+			<td class="footable-visible">$60,000.00</td>
+			<td class="footable-visible"><!--StartFragment-->ID<!--EndFragment--></td>
+			<td class="footable-visible footable-last-column">$80,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/cias/item/visual-communication-design-mfa?category_id=16">Visual Communication Design (MFA)</a></td>
+			<td class="footable-visible">$10.00</td>
+			<td class="footable-visible">$24.08</td>
+			<td class="footable-visible">$50.00</td>
+			<td class="footable-visible">$57,000.00</td>
+			<td class="footable-visible">$60,000.00</td>
+			<td class="footable-visible footable-last-column">$75,000.00</td>
+		</tr><tr><td class="footable-visible footable-first-column"><span class="footable-toggle"></span><a href="https://www.rit.edu/emcs/programoverviews/browse-by-college/gccis/item/web-and-mobile-computing-bs">Web and Mobile Computing BS</a></td>
+			<td class="footable-visible">&nbsp;</td>
+			<td class="footable-visible"><!--StartFragment-->$16.85<!--EndFragment--></td>
+			<td class="footable-visible">&nbsp;</td>
+			<td class="footable-visible">&nbsp;</td>
+			<td class="footable-visible"><!--StartFragment-->$67,000.00<!--EndFragment--></td>
+			<td class="footable-visible footable-last-column">&nbsp;</td>
+		</tr></tbody></table>
+
         <!-- Intro Screen Fill with logo and background image -->
         <div class='page background' id='home'>
             <div class=' center-vertical center'>
